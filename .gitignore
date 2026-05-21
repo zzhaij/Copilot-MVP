@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+.idea/
+.vscode/
+chroma_db/
+data/uploads/
+traces/
+logs/
+.pytest_cache/
+*.egg-info/
