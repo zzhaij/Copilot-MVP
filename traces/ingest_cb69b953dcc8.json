@@ -1,0 +1,33 @@
+{
+  "id": "cb69b953dcc8",
+  "kind": "ingest",
+  "elapsed_sec": 0.8124,
+  "payload": {
+    "filename": "翟泽娟简历.pdf",
+    "size": 407509,
+    "stats": {
+      "doc_id": "翟泽娟简历-5510ecf274",
+      "doc_name": "翟泽娟简历.pdf",
+      "chunks": 8,
+      "pages": 2
+    }
+  },
+  "events": [
+    {
+      "event": "parsed",
+      "ts": 0.4093,
+      "doc_id": "翟泽娟简历-5510ecf274",
+      "pages": 2
+    },
+    {
+      "event": "chunked",
+      "ts": 0.4106,
+      "chunks": 8
+    },
+    {
+      "event": "indexed",
+      "ts": 0.8119,
+      "count": 8
+    }
+  ]
+}

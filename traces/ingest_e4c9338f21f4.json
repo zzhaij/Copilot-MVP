@@ -1,0 +1,21 @@
+{
+  "id": "e4c9338f21f4",
+  "kind": "ingest",
+  "elapsed_sec": 0.0047,
+  "payload": {
+    "filename": "sample_contract.md"
+  },
+  "events": [
+    {
+      "event": "parsed",
+      "ts": 0.001,
+      "doc_id": "sample_contract-17060b3bba",
+      "pages": 1
+    },
+    {
+      "event": "chunked",
+      "ts": 0.003,
+      "chunks": 2
+    }
+  ]
+}

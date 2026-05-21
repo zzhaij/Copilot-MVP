@@ -1,0 +1,26 @@
+{
+  "id": "04a972933a6b",
+  "kind": "ingest",
+  "elapsed_sec": 80.9755,
+  "payload": {
+    "filename": "sample_report.txt"
+  },
+  "events": [
+    {
+      "event": "parsed",
+      "ts": 0.001,
+      "doc_id": "sample_report-f6875b4dcb",
+      "pages": 1
+    },
+    {
+      "event": "chunked",
+      "ts": 0.0025,
+      "chunks": 2
+    },
+    {
+      "event": "indexed",
+      "ts": 80.975,
+      "count": 2
+    }
+  ]
+}

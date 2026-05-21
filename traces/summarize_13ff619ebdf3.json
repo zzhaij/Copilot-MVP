@@ -1,0 +1,13 @@
+{
+  "id": "13ff619ebdf3",
+  "kind": "summarize",
+  "elapsed_sec": 0.0755,
+  "payload": {},
+  "events": [
+    {
+      "event": "error",
+      "ts": 0.0704,
+      "msg": "'NoneType' object has no attribute 'get'"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "a75b627b9475",
+  "kind": "ingest",
+  "elapsed_sec": 0.4207,
+  "payload": {
+    "filename": "sample_contract.md",
+    "size": 1896,
+    "stats": {
+      "doc_id": "sample_contract-17060b3bba",
+      "doc_name": "sample_contract.md",
+      "chunks": 2,
+      "pages": 1
+    }
+  },
+  "events": [
+    {
+      "event": "parsed",
+      "ts": 0.001,
+      "doc_id": "sample_contract-17060b3bba",
+      "pages": 1
+    },
+    {
+      "event": "chunked",
+      "ts": 0.0033,
+      "chunks": 2
+    },
+    {
+      "event": "indexed",
+      "ts": 0.4201,
+      "count": 2
+    }
+  ]
+}

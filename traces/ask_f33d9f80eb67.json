@@ -1,0 +1,13 @@
+{
+  "id": "f33d9f80eb67",
+  "kind": "ask",
+  "elapsed_sec": 0.0624,
+  "payload": {},
+  "events": [
+    {
+      "event": "error",
+      "ts": 0.0583,
+      "msg": "'NoneType' object has no attribute 'get'"
+    }
+  ]
+}

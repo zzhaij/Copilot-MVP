@@ -1,0 +1,33 @@
+{
+  "id": "a76b0e8091b4",
+  "kind": "ingest",
+  "elapsed_sec": 1.7147,
+  "payload": {
+    "filename": "远航公司财务报告.pdf",
+    "size": 745914,
+    "stats": {
+      "doc_id": "远航公司财务报告-bdf70851b1",
+      "doc_name": "远航公司财务报告.pdf",
+      "chunks": 7,
+      "pages": 4
+    }
+  },
+  "events": [
+    {
+      "event": "parsed",
+      "ts": 1.2807,
+      "doc_id": "远航公司财务报告-bdf70851b1",
+      "pages": 4
+    },
+    {
+      "event": "chunked",
+      "ts": 1.2818,
+      "chunks": 7
+    },
+    {
+      "event": "indexed",
+      "ts": 1.7147,
+      "count": 7
+    }
+  ]
+}
