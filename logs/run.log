@@ -1,0 +1,1717 @@
+2026-05-20 20:29:14 | DEBUG   | app.tracing:26 | [trace ac9e07c98ac2] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:29:14 | DEBUG   | app.tracing:26 | [trace ac9e07c98ac2] chunked {'chunks': 2}
+2026-05-20 20:29:23 | INFO    | app.tracing:52 | trace saved -> ingest_ac9e07c98ac2.json
+2026-05-20 20:31:42 | DEBUG   | app.tracing:26 | [trace f5b53c2ca566] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:31:42 | DEBUG   | app.tracing:26 | [trace f5b53c2ca566] chunked {'chunks': 2}
+2026-05-20 20:31:42 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7890
+2026-05-20 20:31:51 | INFO    | app.tracing:52 | trace saved -> ingest_f5b53c2ca566.json
+2026-05-20 20:33:02 | DEBUG   | app.tracing:26 | [trace 5840ff05284a] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:33:02 | DEBUG   | app.tracing:26 | [trace 5840ff05284a] chunked {'chunks': 2}
+2026-05-20 20:33:02 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 20:33:07 | INFO    | app.tracing:52 | trace saved -> ingest_5840ff05284a.json
+2026-05-20 20:34:07 | INFO    | app.main:68 | upload received: sample_contract.md (1896 bytes)
+2026-05-20 20:34:07 | DEBUG   | app.tracing:26 | [trace 0cd958d96666] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:34:07 | DEBUG   | app.tracing:26 | [trace 0cd958d96666] chunked {'chunks': 2}
+2026-05-20 20:34:14 | DEBUG   | app.tracing:26 | [trace 0cd958d96666] error {'msg': 'Connection error.'}
+2026-05-20 20:34:14 | ERROR   | app.main:76 | ingest failed
+Traceback (most recent call last):
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpx\_transports\default.py", line 72, in map_httpcore_exceptions
+    yield
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpx\_transports\default.py", line 236, in handle_request
+    resp = self._pool.handle_request(req)
+           │    │     │              └ <Request [b'POST']>
+           │    │     └ <function ConnectionPool.handle_request at 0x000001C0AC8D3CE0>
+           │    └ <HTTPProxy [Requests: 0 active, 0 queued | Connections: 3 active, 0 idle]>
+           └ <httpx.HTTPTransport object at 0x000001C0BD8AF950>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               │          └ <function TunnelHTTPConnection.handle_request at 0x000001C0AC8DD080>
+               └ <TunnelHTTPConnection ['http://127.0.0.1:7897', HTTP/1.1, ACTIVE, Request Count: 1]>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpcore\_sync\http_proxy.py", line 316, in handle_request
+    stream = stream.start_tls(**kwargs)
+             │      │           └ {'ssl_context': <ssl.SSLContext object at 0x000001C0BD8CAE50>, 'server_hostname': 'api.openai.com', 'timeout': 5.0}
+             │      └ <function HTTP11UpgradeStream.start_tls at 0x000001C0AC8D2DE0>
+             └ <httpcore._sync.http11.HTTP11UpgradeStream object at 0x000001C0BD8EBA10>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 376, in start_tls
+    return self._stream.start_tls(ssl_context, server_hostname, timeout)
+           │    │       │         │            │                └ 5.0
+           │    │       │         │            └ 'api.openai.com'
+           │    │       │         └ <ssl.SSLContext object at 0x000001C0BD8CAE50>
+           │    │       └ <function SyncStream.start_tls at 0x000001C0AC8900E0>
+           │    └ <httpcore._backends.sync.SyncStream object at 0x000001C0BD8EB800>
+           └ <httpcore._sync.http11.HTTP11UpgradeStream object at 0x000001C0BD8EBA10>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 154, in start_tls
+    with map_exceptions(exc_map):
+         │              └ {<class 'TimeoutError'>: <class 'httpcore.ConnectTimeout'>, <class 'OSError'>: <class 'httpcore.ConnectError'>}
+         └ <function map_exceptions at 0x000001C0AC836A20>
+  File "C:\Windows\anaconda3\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+    │    │   │     └ SSLError(1, '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1000)')
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_exceptions at 0x000001C0BD9045E0>
+    └ <contextlib._GeneratorContextManager object at 0x000001C0BD8EB950>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+          └ <class 'httpcore.ConnectError'>
+
+httpcore.ConnectError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1000)
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\_base_client.py", line 983, in _request
+    response = self._client.send(
+               │    │       └ <function Client.send at 0x000001C0AC912160>
+               │    └ <openai._base_client.SyncHttpxClientWrapper object at 0x000001C0BD725BE0>
+               └ <openai.OpenAI object at 0x000001C0BD605C40>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpx\_client.py", line 926, in send
+    response = self._send_handling_auth(
+               │    └ <function Client._send_handling_auth at 0x000001C0AC912200>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000001C0BD725BE0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpx\_client.py", line 954, in _send_handling_auth
+    response = self._send_handling_redirects(
+               │    └ <function Client._send_handling_redirects at 0x000001C0AC9122A0>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000001C0BD725BE0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpx\_client.py", line 991, in _send_handling_redirects
+    response = self._send_single_request(request)
+               │    │                    └ <Request('POST', 'https://api.openai.com/v1/embeddings')>
+               │    └ <function Client._send_single_request at 0x000001C0AC912340>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000001C0BD725BE0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpx\_client.py", line 1027, in _send_single_request
+    response = transport.handle_request(request)
+               │         │              └ <Request('POST', 'https://api.openai.com/v1/embeddings')>
+               │         └ <function HTTPTransport.handle_request at 0x000001C0AC8F3B00>
+               └ <httpx.HTTPTransport object at 0x000001C0BD8AF950>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpx\_transports\default.py", line 235, in handle_request
+    with map_httpcore_exceptions():
+         └ <function map_httpcore_exceptions at 0x000001C0AC8342C0>
+  File "C:\Windows\anaconda3\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+    │    │   │     └ ConnectError(SSLError(1, '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1000)'))
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_httpcore_exceptions at 0x000001C0BD8A7B40>
+    └ <contextlib._GeneratorContextManager object at 0x000001C0BD8EB020>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\httpx\_transports\default.py", line 89, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+          │          └ '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1000)'
+          └ <class 'httpx.ConnectError'>
+
+httpx.ConnectError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1000)
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 148, in <module>
+    uvicorn.run("app.main:app", host=s.APP_HOST, port=s.APP_PORT, reload=False)
+    │       │                        │ │              │ └ 8000
+    │       │                        │ │              └ Settings(LLM_BASE_URL='https://api.deepseek.com/v1', LLM_API_KEY='sk-0fedaf7cb8b0461190870fe3ab53157a', LLM_MODEL='deepseek-c...
+    │       │                        │ └ '0.0.0.0'
+    │       │                        └ Settings(LLM_BASE_URL='https://api.deepseek.com/v1', LLM_API_KEY='sk-0fedaf7cb8b0461190870fe3ab53157a', LLM_MODEL='deepseek-c...
+    │       └ <function run at 0x000001C0BD2EED40>
+    └ <module 'uvicorn' from 'D:\\ZhaiYAN\\ZhaiYAN\\zzj\\work\\PyCharm project\\MVP\\.venv\\Lib\\site-packages\\uvicorn\\__init__.py'>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\uvicorn\main.py", line 577, in run
+    server.run()
+    │      └ <function Server.run at 0x000001C0BD2EF240>
+    └ <uvicorn.server.Server object at 0x000001C0BCBDC560>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x000001C0BD2EF2E0>
+           │       │   └ <uvicorn.server.Server object at 0x000001C0BCBDC560>
+           │       └ <function run at 0x000001C0A80AB2E0>
+           └ <module 'asyncio' from 'C:\\Windows\\anaconda3\\Lib\\asyncio\\__init__.py'>
+  File "C:\Windows\anaconda3\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x000001C0BD2FF5A0>
+           │      └ <function Runner.run at 0x000001C0A9FCADE0>
+           └ <asyncio.runners.Runner object at 0x000001C0BD303EF0>
+  File "C:\Windows\anaconda3\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-pa...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001C0A9FC89A0>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001C0BD303EF0>
+  File "C:\Windows\anaconda3\Lib\asyncio\base_events.py", line 674, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001C0AA06EFC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Windows\anaconda3\Lib\asyncio\windows_events.py", line 322, in run_forever
+    super().run_forever()
+  File "C:\Windows\anaconda3\Lib\asyncio\base_events.py", line 641, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001C0A9FCA700>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Windows\anaconda3\Lib\asyncio\base_events.py", line 1986, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001C0A9F4AE80>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x000001C0BD8AEC80>()>
+  File "C:\Windows\anaconda3\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x000001C0BD8AEC80>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x000001C0BD8AEC80>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x000001C0BD8AEC80>()>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001C0BD1F3620>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C0BD...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001C0BD5E9F70>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001C0BD1F3620>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C0BD...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C0BD...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001C0BD277FE0>
+          └ <fastapi.applications.FastAPI object at 0x000001C0BD5E9F70>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001C0BD5F76A0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x000001C0BD5EB1A0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001C0BD277FE0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': '127.0.0.1:8000', 'connection': 'keep-alive', 'content-length': '2091', 'sec-ch-ua-platform': '"Windows"', '...
+          │    │               │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001C0BD5F76A0>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function CORSMiddleware.simple_response at 0x000001C0AC1E80E0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x000001C0BD5EB1A0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x000001C0BD5EB1A0...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001C0BD5EB080>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x000001C0BD5EB1A0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x000001C0BD5EB1A0...
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x000001C0BD8AE7B0>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000001C0BD5EA030>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001C0BD5EB080>
+          └ <function wrap_app_handling_exceptions at 0x000001C0AC12ECA0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001C0BD6513A0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x000001C0BD5EA030>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001C0BD6513A0>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000001C0BD5EA030>>
+          └ <fastapi.routing.APIRouter object at 0x000001C0BD5EA030>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001C0BD6513A0>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000001C0AC154220>
+          └ APIRoute(path='/api/upload', name='upload', methods=['POST'])
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001C0BD6513A0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000001C0BD5F5580>
+          └ APIRoute(path='/api/upload', name='upload', methods=['POST'])
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001C0BD6513A0>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x000001C0BD8AEA50>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000001C0BD8B53A0>
+          └ <function wrap_app_handling_exceptions at 0x000001C0AC12ECA0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001C0BD8B6FC0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x000001C...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.4'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000001C0BD8B53A0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000001C0BD8AEA50>
+                     └ <function get_request_handler.<locals>.app at 0x000001C0BD5F5760>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001C0AC12E3E0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'file': UploadFile(filename='sample_contract.md', size=1896, headers=Headers({'content-disposition': 'form-data; name="file"...
+                 │         └ <function upload at 0x000001C0BD5F6480>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[ModelField(field_info=File(Pydant...
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 73, in upload
+    stats = ingest_file(path, trace=t)
+            │           │           └ <app.tracing.Trace object at 0x000001C0BB92F710>
+            │           └ WindowsPath('D:/ZhaiYAN/ZhaiYAN/zzj/work/PyCharm project/MVP/data/uploads/sample_contract.md')
+            └ <function ingest_file at 0x000001C0BD292520>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\ingest.py", line 111, in ingest_file
+    embeddings = embed_texts(chunk_texts)
+                 │           └ ['# 企业服务合同（样例）\n\n**甲方**：明远科技有限公司\n**乙方**：鼎信软件集团\n\n## 第一条 服务内容\n\n乙方为甲方提供企业数据中台建设服务，包含但不限于：\n1. 数据仓库架构设计与实施\n2. ETL 流水线开发与部署...
+                 └ <function embed_texts at 0x000001C0AD7119E0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\llm.py", line 43, in embed_texts
+    if not _settings.EMBED_API_KEY:
+           │         └ 'sk-E2pHTfNbJfNfmxv44cYrw8wuxiWel9Tc1X1IZNfbowDp7ugP'
+           └ Settings(LLM_BASE_URL='https://api.deepseek.com/v1', LLM_API_KEY='sk-0fedaf7cb8b0461190870fe3ab53157a', LLM_MODEL='deepseek-c...
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\resources\embeddings.py", line 124, in create
+    return self._post(
+           │    └ <bound method SyncAPIClient.post of <openai.OpenAI object at 0x000001C0BD605C40>>
+           └ <openai.resources.embeddings.Embeddings object at 0x000001C0BD8AFDA0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\_base_client.py", line 1270, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+           │    │          │    │       │        │            │                  └ None
+           │    │          │    │       │        │            └ False
+           │    │          │    │       │        └ FinalRequestOptions(method='post', url='/embeddings', params={}, headers=NOT_GIVEN, max_retries=NOT_GIVEN, timeout=NOT_GIVEN,...
+           │    │          │    │       └ <class 'openai.types.create_embedding_response.CreateEmbeddingResponse'>
+           │    │          │    └ <function SyncAPIClient.request at 0x000001C0AD3D9B20>
+           │    │          └ <openai.OpenAI object at 0x000001C0BD605C40>
+           │    └ ~ResponseT
+           └ <function cast at 0x000001C0A809FEC0>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\_base_client.py", line 947, in request
+    return self._request(
+           │    └ <function SyncAPIClient._request at 0x000001C0AD3D9BC0>
+           └ <openai.OpenAI object at 0x000001C0BD605C40>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\_base_client.py", line 1007, in _request
+    return self._retry_request(
+           │    └ <function SyncAPIClient._retry_request at 0x000001C0AD3D9C60>
+           └ <openai.OpenAI object at 0x000001C0BD605C40>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\_base_client.py", line 1085, in _retry_request
+    return self._request(
+           │    └ <function SyncAPIClient._request at 0x000001C0AD3D9BC0>
+           └ <openai.OpenAI object at 0x000001C0BD605C40>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\_base_client.py", line 1007, in _request
+    return self._retry_request(
+           │    └ <function SyncAPIClient._retry_request at 0x000001C0AD3D9C60>
+           └ <openai.OpenAI object at 0x000001C0BD605C40>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\_base_client.py", line 1085, in _retry_request
+    return self._request(
+           │    └ <function SyncAPIClient._request at 0x000001C0AD3D9BC0>
+           └ <openai.OpenAI object at 0x000001C0BD605C40>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\openai\_base_client.py", line 1017, in _request
+    raise APIConnectionError(request=request) from err
+          │                          └ <Request('POST', 'https://api.openai.com/v1/embeddings')>
+          └ <class 'openai.APIConnectionError'>
+
+openai.APIConnectionError: Connection error.
+2026-05-20 20:34:14 | INFO    | app.tracing:52 | trace saved -> ingest_0cd958d96666.json
+2026-05-20 20:35:30 | DEBUG   | app.tracing:26 | [trace 4a6f12b90101] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:35:30 | DEBUG   | app.tracing:26 | [trace 4a6f12b90101] chunked {'chunks': 2}
+2026-05-20 20:35:30 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:36:41 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:36:41 | INFO    | app.tracing:52 | trace saved -> ingest_4a6f12b90101.json
+2026-05-20 20:36:54 | DEBUG   | app.tracing:26 | [trace 02460d866f78] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:36:54 | DEBUG   | app.tracing:26 | [trace 02460d866f78] chunked {'chunks': 2}
+2026-05-20 20:36:54 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:36:56 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:36:56 | INFO    | app.tracing:52 | trace saved -> ingest_02460d866f78.json
+2026-05-20 20:37:12 | INFO    | app.tracing:52 | trace saved -> ingest_20fa09d94976.json
+2026-05-20 20:37:12 | DEBUG   | app.tracing:26 | [trace 20fa09d94976] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:37:12 | DEBUG   | app.tracing:26 | [trace 20fa09d94976] chunked {'chunks': 2}
+2026-05-20 20:37:12 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:37:14 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:37:51 | INFO    | app.tracing:52 | trace saved -> ingest_a062b4b46f8a.json
+2026-05-20 20:38:02 | INFO    | app.tracing:52 | trace saved -> ingest_e039786e300e.json
+2026-05-20 20:38:02 | DEBUG   | app.tracing:26 | [trace e039786e300e] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:38:02 | DEBUG   | app.tracing:26 | [trace e039786e300e] chunked {'chunks': 2}
+2026-05-20 20:38:02 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:38:03 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:38:34 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:38:35 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:39:01 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:39:02 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:39:12 | DEBUG   | app.tracing:26 | [trace 198e968d1f78] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:39:12 | DEBUG   | app.tracing:26 | [trace 198e968d1f78] chunked {'chunks': 2}
+2026-05-20 20:39:12 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:39:13 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:39:14 | INFO    | app.ingest:116 | ingest: sample_contract.md -> 2 chunks
+2026-05-20 20:39:14 | DEBUG   | app.tracing:26 | [trace 198e968d1f78] indexed {'count': 2}
+2026-05-20 20:39:14 | INFO    | app.tracing:52 | trace saved -> ingest_198e968d1f78.json
+2026-05-20 20:39:23 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 20:46:13 | INFO    | app.tracing:52 | trace saved -> ask_7ec8c89c6eaa.json
+2026-05-20 20:48:10 | DEBUG   | app.tracing:26 | [trace e77a1ff0ace7] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:48:10 | DEBUG   | app.tracing:26 | [trace e77a1ff0ace7] chunked {'chunks': 2}
+2026-05-20 20:48:10 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:48:10 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:48:11 | INFO    | app.ingest:116 | ingest: sample_contract.md -> 2 chunks
+2026-05-20 20:48:11 | DEBUG   | app.tracing:26 | [trace e77a1ff0ace7] indexed {'count': 2}
+2026-05-20 20:48:11 | INFO    | app.tracing:52 | trace saved -> ingest_e77a1ff0ace7.json
+2026-05-20 20:48:22 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:48:22 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 20:48:22 | DEBUG   | app.tracing:26 | [trace 7e41f2b1afbc] retrieved {'count': 2, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.284}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.234}]}
+2026-05-20 20:48:22 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 20:48:28 | DEBUG   | app.llm:101 | llm usage: prompt=706 completion=140
+2026-05-20 20:48:28 | DEBUG   | app.tracing:26 | [trace 7e41f2b1afbc] llm_done {'chars': 225}
+2026-05-20 20:48:28 | INFO    | app.tracing:52 | trace saved -> ask_7e41f2b1afbc.json
+2026-05-20 20:53:42 | DEBUG   | app.tracing:26 | [trace 1317101a8bc9] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:53:42 | DEBUG   | app.tracing:26 | [trace 1317101a8bc9] chunked {'chunks': 2}
+2026-05-20 20:53:42 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:53:42 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:53:42 | INFO    | app.ingest:116 | ingest: sample_contract.md -> 2 chunks
+2026-05-20 20:53:42 | DEBUG   | app.tracing:26 | [trace 1317101a8bc9] indexed {'count': 2}
+2026-05-20 20:53:42 | INFO    | app.tracing:52 | trace saved -> ingest_1317101a8bc9.json
+2026-05-20 20:53:59 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:54:00 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 20:54:00 | DEBUG   | app.tracing:26 | [trace 1f5ff7362d7d] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.284}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.284}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.234}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.234}]}
+2026-05-20 20:54:00 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 20:54:06 | DEBUG   | app.llm:101 | llm usage: prompt=1285 completion=137
+2026-05-20 20:54:06 | DEBUG   | app.tracing:26 | [trace 1f5ff7362d7d] llm_done {'chars': 219}
+2026-05-20 20:54:06 | INFO    | app.tracing:52 | trace saved -> ask_1f5ff7362d7d.json
+2026-05-20 20:54:21 | DEBUG   | app.tracing:26 | [trace 894e8daaaadf] parsed {'doc_id': 'sample_report-f6875b4dcb', 'pages': 1}
+2026-05-20 20:54:21 | DEBUG   | app.tracing:26 | [trace 894e8daaaadf] chunked {'chunks': 2}
+2026-05-20 20:54:21 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:54:22 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:54:22 | INFO    | app.ingest:116 | ingest: sample_report.txt -> 2 chunks
+2026-05-20 20:54:22 | DEBUG   | app.tracing:26 | [trace 894e8daaaadf] indexed {'count': 2}
+2026-05-20 20:54:22 | INFO    | app.tracing:52 | trace saved -> ingest_894e8daaaadf.json
+2026-05-20 20:54:32 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:54:33 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 20:54:33 | DEBUG   | app.tracing:26 | [trace a7f4f2169e77] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_report.txt', 'score': 0.4075}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.284}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.284}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.234}]}
+2026-05-20 20:54:33 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 20:54:39 | DEBUG   | app.llm:101 | llm usage: prompt=1038 completion=137
+2026-05-20 20:54:39 | DEBUG   | app.tracing:26 | [trace a7f4f2169e77] llm_done {'chars': 219}
+2026-05-20 20:54:39 | INFO    | app.tracing:52 | trace saved -> ask_a7f4f2169e77.json
+2026-05-20 20:54:49 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:54:49 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 20:54:49 | DEBUG   | app.tracing:26 | [trace 5860b883437d] retrieved {'count': 2}
+2026-05-20 20:54:49 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 20:55:00 | DEBUG   | app.llm:101 | llm usage: prompt=605 completion=292
+2026-05-20 20:55:00 | DEBUG   | app.tracing:26 | [trace 5860b883437d] llm_done {'ok': True}
+2026-05-20 20:55:00 | INFO    | app.tracing:52 | trace saved -> summarize_5860b883437d.json
+2026-05-20 20:55:35 | INFO    | app.main:68 | upload received: sample_contract.md (1896 bytes)
+2026-05-20 20:55:35 | DEBUG   | app.tracing:26 | [trace a75b627b9475] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 20:55:35 | DEBUG   | app.tracing:26 | [trace a75b627b9475] chunked {'chunks': 2}
+2026-05-20 20:55:35 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 20:55:35 | DEBUG   | app.llm:72 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 20:55:35 | INFO    | app.ingest:116 | ingest: sample_contract.md -> 2 chunks
+2026-05-20 20:55:35 | DEBUG   | app.tracing:26 | [trace a75b627b9475] indexed {'count': 2}
+2026-05-20 20:55:35 | INFO    | app.tracing:52 | trace saved -> ingest_a75b627b9475.json
+2026-05-20 20:56:10 | INFO    | app.main:68 | upload received: 翟泽娟简历.pdf (407509 bytes)
+2026-05-20 20:56:10 | DEBUG   | app.tracing:26 | [trace cb69b953dcc8] parsed {'doc_id': '翟泽娟简历-5510ecf274', 'pages': 2}
+2026-05-20 20:56:10 | DEBUG   | app.tracing:26 | [trace cb69b953dcc8] chunked {'chunks': 8}
+2026-05-20 20:56:11 | DEBUG   | app.llm:72 | embed_texts[local]: 8 条 -> dim=384
+2026-05-20 20:56:11 | INFO    | app.ingest:116 | ingest: 翟泽娟简历.pdf -> 8 chunks
+2026-05-20 20:56:11 | DEBUG   | app.tracing:26 | [trace cb69b953dcc8] indexed {'count': 8}
+2026-05-20 20:56:11 | INFO    | app.tracing:52 | trace saved -> ingest_cb69b953dcc8.json
+2026-05-20 20:56:37 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 20:56:37 | DEBUG   | app.tracing:26 | [trace 86ae41b04b35] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_report.txt', 'score': 0.4222}, {'rank': 2, 'doc': '翟泽娟简历.pdf', 'score': 0.3365}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.3287}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.3287}]}
+2026-05-20 20:56:37 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 20:56:43 | DEBUG   | app.llm:101 | llm usage: prompt=749 completion=136
+2026-05-20 20:56:43 | DEBUG   | app.tracing:26 | [trace 86ae41b04b35] llm_done {'chars': 216}
+2026-05-20 20:56:43 | INFO    | app.tracing:52 | trace saved -> ask_86ae41b04b35.json
+2026-05-20 20:56:49 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 20:56:49 | DEBUG   | app.tracing:26 | [trace 543107e5bc9e] retrieved {'count': 12}
+2026-05-20 20:57:01 | DEBUG   | app.llm:101 | llm usage: prompt=3124 completion=372
+2026-05-20 20:57:01 | DEBUG   | app.tracing:26 | [trace 543107e5bc9e] llm_done {'ok': True}
+2026-05-20 20:57:01 | INFO    | app.tracing:52 | trace saved -> summarize_543107e5bc9e.json
+2026-05-20 21:07:40 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:07:40 | DEBUG   | app.tracing:26 | [trace 7f6bbcd13fea] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-20 21:07:40 | ERROR   | app.main:89 | ask failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001A7F5718D60>
+    └ <WorkerThread(AnyIO worker thread, started 9044)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000001A7FFC05D00>
+    └ <WorkerThread(AnyIO worker thread, started 9044)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function ask at 0x000001A7FFBE5620>, req=AskReq(question='这份合同的违约责任是什么？', top_k=None))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000001A7FFC08340>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 86, in ask
+    result = answer_question(req.question, top_k=req.top_k, trace=t)
+             │               │   │               │   │            └ <app.tracing.Trace object at 0x000001A7909514C0>
+             │               │   │               │   └ None
+             │               │   │               └ AskReq(question='这份合同的违约责任是什么？', top_k=None)
+             │               │   └ '这份合同的违约责任是什么？'
+             │               └ AskReq(question='这份合同的违约责任是什么？', top_k=None)
+             └ <function answer_question at 0x000001A7FF892980>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 14, in answer_question
+    hits = retrieve(question, top_k=top_k)
+           │        │               └ None
+           │        └ '这份合同的违约责任是什么？'
+           └ <function retrieve at 0x000001A7FF892C00>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 30, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-20 21:07:40 | INFO    | app.tracing:52 | trace saved -> ask_7f6bbcd13fea.json
+2026-05-20 21:07:41 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:07:41 | DEBUG   | app.tracing:26 | [trace bb908723add1] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-20 21:07:41 | ERROR   | app.main:89 | ask failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001A7F5718D60>
+    └ <WorkerThread(AnyIO worker thread, started 9044)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000001A7FFC05D00>
+    └ <WorkerThread(AnyIO worker thread, started 9044)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function ask at 0x000001A7FFBE5620>, req=AskReq(question='这份合同的违约责任是什么？', top_k=None))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000001A7FF168100>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 86, in ask
+    result = answer_question(req.question, top_k=req.top_k, trace=t)
+             │               │   │               │   │            └ <app.tracing.Trace object at 0x000001A790953110>
+             │               │   │               │   └ None
+             │               │   │               └ AskReq(question='这份合同的违约责任是什么？', top_k=None)
+             │               │   └ '这份合同的违约责任是什么？'
+             │               └ AskReq(question='这份合同的违约责任是什么？', top_k=None)
+             └ <function answer_question at 0x000001A7FF892980>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 14, in answer_question
+    hits = retrieve(question, top_k=top_k)
+           │        │               └ None
+           │        └ '这份合同的违约责任是什么？'
+           └ <function retrieve at 0x000001A7FF892C00>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 30, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-20 21:07:41 | INFO    | app.tracing:52 | trace saved -> ask_bb908723add1.json
+2026-05-20 21:07:42 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:07:42 | DEBUG   | app.tracing:26 | [trace bbd27deb7496] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-20 21:07:42 | ERROR   | app.main:89 | ask failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001A7F5718D60>
+    └ <WorkerThread(AnyIO worker thread, started 9044)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000001A7FFC05D00>
+    └ <WorkerThread(AnyIO worker thread, started 9044)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function ask at 0x000001A7FFBE5620>, req=AskReq(question='这份合同的违约责任是什么？', top_k=None))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000001A7FFEB3D80>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 86, in ask
+    result = answer_question(req.question, top_k=req.top_k, trace=t)
+             │               │   │               │   │            └ <app.tracing.Trace object at 0x000001A790A285C0>
+             │               │   │               │   └ None
+             │               │   │               └ AskReq(question='这份合同的违约责任是什么？', top_k=None)
+             │               │   └ '这份合同的违约责任是什么？'
+             │               └ AskReq(question='这份合同的违约责任是什么？', top_k=None)
+             └ <function answer_question at 0x000001A7FF892980>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 14, in answer_question
+    hits = retrieve(question, top_k=top_k)
+           │        │               └ None
+           │        └ '这份合同的违约责任是什么？'
+           └ <function retrieve at 0x000001A7FF892C00>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 30, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-20 21:07:42 | INFO    | app.tracing:52 | trace saved -> ask_bbd27deb7496.json
+2026-05-20 21:08:01 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:08:01 | DEBUG   | app.tracing:26 | [trace a32ba7c7b566] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-20 21:08:01 | ERROR   | app.main:89 | ask failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001A7F5718D60>
+    └ <WorkerThread(AnyIO worker thread, started 9044)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000001A7FFC05D00>
+    └ <WorkerThread(AnyIO worker thread, started 9044)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function ask at 0x000001A7FFBE5620>, req=AskReq(question='这份合同中有哪些人员？', top_k=None))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000001A7FA850300>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 86, in ask
+    result = answer_question(req.question, top_k=req.top_k, trace=t)
+             │               │   │               │   │            └ <app.tracing.Trace object at 0x000001A790953D70>
+             │               │   │               │   └ None
+             │               │   │               └ AskReq(question='这份合同中有哪些人员？', top_k=None)
+             │               │   └ '这份合同中有哪些人员？'
+             │               └ AskReq(question='这份合同中有哪些人员？', top_k=None)
+             └ <function answer_question at 0x000001A7FF892980>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 14, in answer_question
+    hits = retrieve(question, top_k=top_k)
+           │        │               └ None
+           │        └ '这份合同中有哪些人员？'
+           └ <function retrieve at 0x000001A7FF892C00>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 30, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-20 21:08:01 | INFO    | app.tracing:52 | trace saved -> ask_a32ba7c7b566.json
+2026-05-20 21:08:40 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 21:08:41 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:08:41 | DEBUG   | app.tracing:26 | [trace 53180c3ae36b] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_report.txt', 'score': 0.4719}, {'rank': 2, 'doc': 'sample_report.txt', 'score': 0.3008}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.2774}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.2774}]}
+2026-05-20 21:08:41 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 21:08:44 | DEBUG   | app.llm:101 | llm usage: prompt=1059 completion=37
+2026-05-20 21:08:44 | DEBUG   | app.tracing:26 | [trace 53180c3ae36b] llm_done {'chars': 60}
+2026-05-20 21:08:44 | INFO    | app.tracing:52 | trace saved -> ask_53180c3ae36b.json
+2026-05-20 21:09:21 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:09:21 | DEBUG   | app.tracing:26 | [trace d85a9f679dac] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_report.txt', 'score': 0.4405}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4172}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.4172}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.4172}]}
+2026-05-20 21:09:23 | DEBUG   | app.llm:101 | llm usage: prompt=945 completion=47
+2026-05-20 21:09:23 | DEBUG   | app.tracing:26 | [trace d85a9f679dac] llm_done {'chars': 78}
+2026-05-20 21:09:23 | INFO    | app.tracing:52 | trace saved -> ask_d85a9f679dac.json
+2026-05-20 21:11:37 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:11:37 | DEBUG   | app.tracing:26 | [trace eaacfc252c0a] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_report.txt', 'score': 0.4155}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.3751}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.3751}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.3751}]}
+2026-05-20 21:11:40 | DEBUG   | app.llm:101 | llm usage: prompt=945 completion=40
+2026-05-20 21:11:40 | DEBUG   | app.tracing:26 | [trace eaacfc252c0a] llm_done {'chars': 65}
+2026-05-20 21:11:40 | INFO    | app.tracing:52 | trace saved -> ask_eaacfc252c0a.json
+2026-05-20 21:12:13 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:12:13 | DEBUG   | app.tracing:26 | [trace 40f8b36dd262] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_report.txt', 'score': 0.4155}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.3751}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.3751}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.3751}]}
+2026-05-20 21:12:15 | DEBUG   | app.llm:101 | llm usage: prompt=945 completion=40
+2026-05-20 21:12:15 | DEBUG   | app.tracing:26 | [trace 40f8b36dd262] llm_done {'chars': 65}
+2026-05-20 21:12:15 | INFO    | app.tracing:52 | trace saved -> ask_40f8b36dd262.json
+2026-05-20 21:12:47 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:12:47 | DEBUG   | app.tracing:26 | [trace 9f3223b02474] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_report.txt', 'score': 0.4155}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.3751}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.3751}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.3751}]}
+2026-05-20 21:12:52 | DEBUG   | app.llm:101 | llm usage: prompt=945 completion=136
+2026-05-20 21:12:52 | DEBUG   | app.tracing:26 | [trace 9f3223b02474] llm_done {'chars': 218}
+2026-05-20 21:12:52 | INFO    | app.tracing:52 | trace saved -> ask_9f3223b02474.json
+2026-05-20 21:14:03 | INFO    | app.llm:62 | 本地 Embedding 模型已加载 (all-MiniLM-L6-v2)
+2026-05-20 21:14:04 | DEBUG   | app.llm:72 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:15:15 | DEBUG   | app.tracing:26 | [trace e4c9338f21f4] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 21:15:15 | DEBUG   | app.tracing:26 | [trace e4c9338f21f4] chunked {'chunks': 2}
+2026-05-20 21:15:15 | INFO    | app.tracing:52 | trace saved -> ingest_e4c9338f21f4.json
+2026-05-20 21:18:22 | DEBUG   | app.tracing:26 | [trace 055b48b34afb] parsed {'doc_id': 'sample_contract-17060b3bba', 'pages': 1}
+2026-05-20 21:18:22 | DEBUG   | app.tracing:26 | [trace 055b48b34afb] chunked {'chunks': 2}
+2026-05-20 21:25:16 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:25:16 | DEBUG   | app.llm:74 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 21:25:16 | INFO    | app.ingest:122 | ingest: sample_contract.md -> 2 chunks
+2026-05-20 21:25:16 | DEBUG   | app.tracing:26 | [trace 055b48b34afb] indexed {'count': 2}
+2026-05-20 21:25:16 | INFO    | app.tracing:52 | trace saved -> ingest_055b48b34afb.json
+2026-05-20 21:26:16 | DEBUG   | app.tracing:26 | [trace 04a972933a6b] parsed {'doc_id': 'sample_report-f6875b4dcb', 'pages': 1}
+2026-05-20 21:26:16 | DEBUG   | app.tracing:26 | [trace 04a972933a6b] chunked {'chunks': 2}
+2026-05-20 21:27:37 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:27:37 | DEBUG   | app.llm:74 | embed_texts[local]: 2 条 -> dim=384
+2026-05-20 21:27:37 | INFO    | app.ingest:122 | ingest: sample_report.txt -> 2 chunks
+2026-05-20 21:27:37 | DEBUG   | app.tracing:26 | [trace 04a972933a6b] indexed {'count': 2}
+2026-05-20 21:27:37 | INFO    | app.tracing:52 | trace saved -> ingest_04a972933a6b.json
+2026-05-20 21:28:30 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:28:30 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:30:37 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:30:37 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:30:37 | DEBUG   | app.retriever:30 | skip chunk (score=0.1069 < threshold=0.25): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:30:37 | DEBUG   | app.tracing:26 | [trace d6e1c630b2eb] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.6776}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4247}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3083}]}
+2026-05-20 21:30:37 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 21:30:41 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:30:41 | DEBUG   | app.retriever:30 | skip chunk (score=0.1069 < threshold=0.25): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:30:41 | DEBUG   | app.tracing:26 | [trace 9f7b8e079979] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.6776}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4247}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3083}]}
+2026-05-20 21:30:45 | DEBUG   | app.llm:103 | llm usage: prompt=1065 completion=137
+2026-05-20 21:30:45 | DEBUG   | app.tracing:26 | [trace d6e1c630b2eb] llm_done {'chars': 230}
+2026-05-20 21:30:45 | INFO    | app.tracing:52 | trace saved -> ask_d6e1c630b2eb.json
+2026-05-20 21:30:46 | DEBUG   | app.llm:103 | llm usage: prompt=1065 completion=137
+2026-05-20 21:30:46 | DEBUG   | app.tracing:26 | [trace 9f7b8e079979] llm_done {'chars': 230}
+2026-05-20 21:30:46 | INFO    | app.tracing:52 | trace saved -> ask_9f7b8e079979.json
+2026-05-20 21:31:07 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:31:07 | DEBUG   | app.tracing:26 | [trace 069f15c44863] retrieved {'count': 4}
+2026-05-20 21:31:22 | DEBUG   | app.llm:103 | llm usage: prompt=1184 completion=507
+2026-05-20 21:31:22 | DEBUG   | app.tracing:26 | [trace 069f15c44863] llm_done {'ok': True}
+2026-05-20 21:31:22 | INFO    | app.tracing:52 | trace saved -> summarize_069f15c44863.json
+2026-05-20 21:31:32 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:31:32 | DEBUG   | app.retriever:30 | skip chunk (score=0.2063 < threshold=0.25): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:31:32 | DEBUG   | app.tracing:26 | [trace 2988f48a9365] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.5153}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4909}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3583}]}
+2026-05-20 21:31:33 | DEBUG   | app.llm:103 | llm usage: prompt=1064 completion=13
+2026-05-20 21:31:33 | DEBUG   | app.tracing:26 | [trace 2988f48a9365] llm_done {'chars': 21}
+2026-05-20 21:31:33 | INFO    | app.tracing:52 | trace saved -> ask_2988f48a9365.json
+2026-05-20 21:34:23 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:34:23 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:34:23 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:34:24 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:36:06 | DEBUG   | app.retriever:76 | retrieve: query='甲方是谁', keywords=['甲方是谁']
+2026-05-20 21:36:47 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:36:47 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:36:47 | DEBUG   | app.retriever:136 | skip (hybrid=0.0783, vec=0.1958, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:36:47 | DEBUG   | app.retriever:136 | skip (hybrid=0.0515, vec=0.1288, kw=0.0): ## 第五条 违约责任
+
+1. 乙方逾期交付的，每逾期一日，应向甲方支付合同总额 **0.5‰** 的违约金，累计不超过
+2026-05-20 21:36:47 | DEBUG   | app.retriever:136 | skip (hybrid=0.0249, vec=0.0623, kw=0.0): # 企业服务合同（样例）
+
+**甲方**：明远科技有限公司
+**乙方**：鼎信软件集团
+
+## 第一条 服务内容
+
+乙方
+2026-05-20 21:36:47 | DEBUG   | app.retriever:136 | skip (hybrid=0.0099, vec=0.0247, kw=0.0): 2025 年 Q1 销售部门工作总结报告
+
+一、整体业绩
+
+本季度部门完成销售收入 4,200 万元，达成年度目标的 2
+2026-05-20 21:36:47 | WARNING | app.retriever:148 | 所有检索结果低于阈值 0.25，可能文档不包含相关内容
+2026-05-20 21:36:47 | DEBUG   | app.retriever:76 | retrieve: query='合同的违约责任有哪些？', keywords=['合同的违约责任有哪些']
+2026-05-20 21:36:47 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:36:47 | DEBUG   | app.retriever:136 | skip (hybrid=0.0981, vec=0.1402, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:36:47 | DEBUG   | app.retriever:76 | retrieve: query='销售收入是多少', keywords=['销售收入是多少']
+2026-05-20 21:36:47 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:36:47 | DEBUG   | app.retriever:136 | skip (hybrid=0.0862, vec=0.2154, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:40:03 | DEBUG   | app.retriever:76 | retrieve: query='甲方是谁', keywords=['甲方是谁']
+2026-05-20 21:40:53 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:40:53 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:40:53 | DEBUG   | app.retriever:136 | skip (hybrid=0.0783, vec=0.1958, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:40:53 | DEBUG   | app.retriever:136 | skip (hybrid=0.0515, vec=0.1288, kw=0.0): ## 第五条 违约责任
+
+1. 乙方逾期交付的，每逾期一日，应向甲方支付合同总额 **0.5‰** 的违约金，累计不超过
+2026-05-20 21:40:53 | DEBUG   | app.retriever:136 | skip (hybrid=0.0249, vec=0.0623, kw=0.0): # 企业服务合同（样例）
+
+**甲方**：明远科技有限公司
+**乙方**：鼎信软件集团
+
+## 第一条 服务内容
+
+乙方
+2026-05-20 21:40:53 | DEBUG   | app.retriever:136 | skip (hybrid=0.0099, vec=0.0247, kw=0.0): 2025 年 Q1 销售部门工作总结报告
+
+一、整体业绩
+
+本季度部门完成销售收入 4,200 万元，达成年度目标的 2
+2026-05-20 21:40:53 | WARNING | app.retriever:148 | 所有检索结果低于阈值 0.25，可能文档不包含相关内容
+2026-05-20 21:40:53 | DEBUG   | app.tracing:26 | [trace 65200f4a4664] retrieved {'count': 0, 'preview': []}
+2026-05-20 21:40:53 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 21:40:55 | DEBUG   | app.llm:103 | llm usage: prompt=128 completion=6
+2026-05-20 21:40:55 | DEBUG   | app.tracing:26 | [trace 65200f4a4664] llm_done {'chars': 11}
+2026-05-20 21:40:55 | INFO    | app.tracing:52 | trace saved -> ask_65200f4a4664.json
+2026-05-20 21:42:10 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:42:11 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:42:49 | DEBUG   | app.retriever:101 | retrieve: query='甲方是谁', keywords=['甲方是谁', '甲方', '方是', '是谁', '甲方是', '方是谁']
+2026-05-20 21:43:33 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:43:33 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:43:33 | DEBUG   | app.retriever:161 | skip (hybrid=0.0783, vec=0.1958, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:43:33 | DEBUG   | app.retriever:161 | skip (hybrid=0.0099, vec=0.0247, kw=0.0): 2025 年 Q1 销售部门工作总结报告
+
+一、整体业绩
+
+本季度部门完成销售收入 4,200 万元，达成年度目标的 2
+2026-05-20 21:43:33 | DEBUG   | app.retriever:101 | retrieve: query='合同的违约责任有哪些？', keywords=['合同的违约责任有哪些', '合同', '同的', '的违', '违约', '约责', '责任', '任有', '有哪', '合同的', '同的违', '的违约', '违约责', '约责任', '责任有', '任有哪', '有哪些', '合同的违', '同的违约', '的违约责', '违约责任', '约责任有', '责任有哪', '任有哪些']
+2026-05-20 21:43:33 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:43:33 | DEBUG   | app.retriever:161 | skip (hybrid=0.0981, vec=0.1402, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:43:33 | DEBUG   | app.retriever:101 | retrieve: query='销售收入是多少', keywords=['销售收入是多少', '销售', '售收', '收入', '入是', '是多', '销售收', '售收入', '收入是', '入是多', '是多少', '销售收入', '售收入是', '收入是多', '入是多少']
+2026-05-20 21:43:33 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:43:33 | DEBUG   | app.retriever:161 | skip (hybrid=0.0862, vec=0.2154, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:44:16 | DEBUG   | app.retriever:126 | retrieve: query='甲方是谁', keywords=['甲方是谁', '甲方', '方是', '是谁', '甲方是', '方是谁'], target=甲方
+2026-05-20 21:44:55 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:44:55 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:44:55 | DEBUG   | app.retriever:186 | skip (hybrid=0.0587, vec=0.1958, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:44:55 | DEBUG   | app.retriever:186 | skip (hybrid=0.0074, vec=0.0247, kw=0.0): 2025 年 Q1 销售部门工作总结报告
+
+一、整体业绩
+
+本季度部门完成销售收入 4,200 万元，达成年度目标的 2
+2026-05-20 21:44:55 | DEBUG   | app.retriever:126 | retrieve: query='合同的违约责任有哪些？', keywords=['合同的违约责任有哪些', '合同', '同的', '的违', '违约', '约责', '责任', '任有', '有哪', '合同的', '同的违', '的违约', '违约责', '约责任', '责任有', '任有哪', '有哪些', '合同的违', '同的违约', '的违约责', '违约责任', '约责任有', '责任有哪', '任有哪些'], target=同的违约责任
+2026-05-20 21:44:55 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:44:55 | DEBUG   | app.retriever:186 | skip (hybrid=0.0981, vec=0.1402, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:44:55 | DEBUG   | app.retriever:126 | retrieve: query='销售收入是多少', keywords=['销售收入是多少', '销售', '售收', '收入', '入是', '是多', '销售收', '售收入', '收入是', '入是多', '是多少', '销售收入', '售收入是', '收入是多', '入是多少'], target=None
+2026-05-20 21:44:55 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:44:55 | DEBUG   | app.retriever:186 | skip (hybrid=0.0862, vec=0.2154, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:45:14 | DEBUG   | app.retriever:126 | retrieve: query='甲方是谁', keywords=['甲方是谁', '甲方', '方是', '是谁', '甲方是', '方是谁'], target=甲方
+2026-05-20 21:45:59 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:45:59 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:45:59 | DEBUG   | app.retriever:186 | skip (hybrid=0.0587, vec=0.1958, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:45:59 | DEBUG   | app.retriever:186 | skip (hybrid=0.0074, vec=0.0247, kw=0.0): 2025 年 Q1 销售部门工作总结报告
+
+一、整体业绩
+
+本季度部门完成销售收入 4,200 万元，达成年度目标的 2
+2026-05-20 21:45:59 | DEBUG   | app.tracing:26 | [trace 9c567bc79a9a] retrieved {'count': 2, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.3454}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.2603}]}
+2026-05-20 21:45:59 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 21:46:01 | DEBUG   | app.llm:103 | llm usage: prompt=703 completion=10
+2026-05-20 21:46:01 | DEBUG   | app.tracing:26 | [trace 9c567bc79a9a] llm_done {'chars': 16}
+2026-05-20 21:46:01 | INFO    | app.tracing:52 | trace saved -> ask_9c567bc79a9a.json
+2026-05-20 21:47:42 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:47:42 | DEBUG   | app.retriever:30 | skip chunk (score=0.2063 < threshold=0.25): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:47:42 | DEBUG   | app.tracing:26 | [trace adc6347be291] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.5153}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4909}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3583}]}
+2026-05-20 21:47:43 | DEBUG   | app.llm:103 | llm usage: prompt=1064 completion=13
+2026-05-20 21:47:43 | DEBUG   | app.tracing:26 | [trace adc6347be291] llm_done {'chars': 21}
+2026-05-20 21:47:43 | INFO    | app.tracing:52 | trace saved -> ask_adc6347be291.json
+2026-05-20 21:48:12 | DEBUG   | app.retriever:126 | retrieve: query='这份合同的乙方是谁？', keywords=['这份合同的乙方是谁', '这份', '份合', '合同', '同的', '的乙', '乙方', '方是', '是谁', '这份合', '份合同', '合同的', '同的乙', '的乙方', '乙方是', '方是谁', '这份合同', '份合同的', '合同的乙', '同的乙方', '的乙方是', '乙方是谁'], target=份合同的乙方
+2026-05-20 21:48:50 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:48:51 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:48:51 | DEBUG   | app.retriever:186 | skip (hybrid=0.0621, vec=0.207, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:48:51 | DEBUG   | app.tracing:26 | [trace fc27b84b45ed] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.4435}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.3637}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.2248}]}
+2026-05-20 21:48:51 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 21:48:53 | DEBUG   | app.llm:103 | llm usage: prompt=1064 completion=15
+2026-05-20 21:48:53 | DEBUG   | app.tracing:26 | [trace fc27b84b45ed] llm_done {'chars': 23}
+2026-05-20 21:48:53 | INFO    | app.tracing:52 | trace saved -> ask_fc27b84b45ed.json
+2026-05-20 21:49:50 | DEBUG   | app.retriever:126 | retrieve: query='这份合同的签约日期是什么时候？', keywords=['这份合同的签约日期是什么时候', '这份', '份合', '合同', '同的', '的签', '签约', '约日', '日期', '期是', '是什', '么时', '时候', '这份合', '份合同', '合同的', '同的签', '的签约', '签约日', '约日期', '日期是', '期是什', '是什么', '什么时', '么时候', '这份合同', '份合同的', '合同的签', '同的签约', '的签约日', '签约日期', '约日期是', '日期是什', '期是什么', '是什么时', '什么时候'], target=同的签约日期
+2026-05-20 21:49:50 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:49:50 | DEBUG   | app.tracing:26 | [trace 17307bb01d03] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.4165}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4041}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3331}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.2126}]}
+2026-05-20 21:49:52 | DEBUG   | app.llm:103 | llm usage: prompt=1155 completion=26
+2026-05-20 21:49:52 | DEBUG   | app.tracing:26 | [trace 17307bb01d03] llm_done {'chars': 35}
+2026-05-20 21:49:52 | INFO    | app.tracing:52 | trace saved -> ask_17307bb01d03.json
+2026-05-20 21:52:06 | DEBUG   | app.retriever:126 | retrieve: query='这份合同的签约日期是什么时候?', keywords=['这份合同的签约日期是什么时候', '这份', '份合', '合同', '同的', '的签', '签约', '约日', '日期', '期是', '是什', '么时', '时候', '这份合', '份合同', '合同的', '同的签', '的签约', '签约日', '约日期', '日期是', '期是什', '是什么', '什么时', '么时候', '这份合同', '份合同的', '合同的签', '同的签约', '的签约日', '签约日期', '约日期是', '日期是什', '期是什么', '是什么时', '什么时候'], target=同的签约日期
+2026-05-20 21:52:51 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:52:51 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:53:27 | DEBUG   | app.retriever:136 | retrieve: query='这份合同的签约日期是什么时候?', keywords=['这份合同的签约日期是什么时候', '这份', '份合', '合同', '同的', '的签', '签约', '约日', '日期', '期是', '是什', '么时', '时候', '这份合', '份合同', '合同的', '同的签', '的签约', '签约日', '约日期', '日期是', '期是什', '是什么', '什么时', '么时候', '这份合同', '份合同的', '合同的签', '同的签约', '的签约日', '签约日期', '约日期是', '日期是什', '期是什么', '是什么时', '什么时候'], target=同的签约日期
+2026-05-20 21:54:11 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:54:11 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:54:28 | DEBUG   | app.retriever:136 | retrieve: query='这份合同的签约日期是什么时候?', keywords=['这份合同的签约日期是什么时候', '这份', '份合', '合同', '同的', '的签', '签约', '约日', '日期', '期是', '是什', '么时', '时候', '这份合', '份合同', '合同的', '同的签', '的签约', '签约日', '约日期', '日期是', '期是什', '是什么', '什么时', '么时候', '这份合同', '份合同的', '合同的签', '同的签约', '的签约日', '签约日期', '约日期是', '日期是什', '期是什么', '是什么时', '什么时候'], target=同的签约日期
+2026-05-20 21:55:09 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:55:09 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:55:09 | DEBUG   | app.tracing:26 | [trace 75373afe8893] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.4941}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4165}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3331}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.2726}]}
+2026-05-20 21:55:09 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 21:55:11 | DEBUG   | app.llm:103 | llm usage: prompt=1155 completion=26
+2026-05-20 21:55:11 | DEBUG   | app.tracing:26 | [trace 75373afe8893] llm_done {'chars': 35}
+2026-05-20 21:55:11 | INFO    | app.tracing:52 | trace saved -> ask_75373afe8893.json
+2026-05-20 21:57:28 | DEBUG   | app.retriever:126 | retrieve: query='这份合同的甲方是谁', keywords=['这份合同的甲方是谁', '这份', '份合', '合同', '同的', '的甲', '甲方', '方是', '是谁', '这份合', '份合同', '合同的', '同的甲', '的甲方', '甲方是', '方是谁', '这份合同', '份合同的', '合同的甲', '同的甲方', '的甲方是', '甲方是谁'], target=份合同的甲方
+2026-05-20 21:57:28 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:57:28 | DEBUG   | app.retriever:186 | skip (hybrid=0.0619, vec=0.2063, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 21:57:28 | DEBUG   | app.tracing:26 | [trace f18dd3f81e01] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.4537}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.3883}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.2407}]}
+2026-05-20 21:57:29 | DEBUG   | app.llm:103 | llm usage: prompt=1064 completion=13
+2026-05-20 21:57:29 | DEBUG   | app.tracing:26 | [trace f18dd3f81e01] llm_done {'chars': 21}
+2026-05-20 21:57:29 | INFO    | app.tracing:52 | trace saved -> ask_f18dd3f81e01.json
+2026-05-20 21:57:51 | DEBUG   | app.retriever:126 | retrieve: query='这份合同的签约日期是什么时候', keywords=['这份合同的签约日期是什么时候', '这份', '份合', '合同', '同的', '的签', '签约', '约日', '日期', '期是', '是什', '么时', '时候', '这份合', '份合同', '合同的', '同的签', '的签约', '签约日', '约日期', '日期是', '期是什', '是什么', '什么时', '么时候', '这份合同', '份合同的', '合同的签', '同的签约', '的签约日', '签约日期', '约日期是', '日期是什', '期是什么', '是什么时', '什么时候'], target=同的签约日期
+2026-05-20 21:57:51 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:57:51 | DEBUG   | app.tracing:26 | [trace 339f0bf25b54] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.4102}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.396}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3322}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.2109}]}
+2026-05-20 21:57:53 | DEBUG   | app.llm:103 | llm usage: prompt=1155 completion=26
+2026-05-20 21:57:53 | DEBUG   | app.tracing:26 | [trace 339f0bf25b54] llm_done {'chars': 35}
+2026-05-20 21:57:53 | INFO    | app.tracing:52 | trace saved -> ask_339f0bf25b54.json
+2026-05-20 21:58:55 | DEBUG   | app.retriever:136 | retrieve: query='合同的签约日期是什么时候', keywords=['合同的签约日期是什么时候', '合同', '同的', '的签', '签约', '约日', '日期', '期是', '是什', '么时', '时候', '合同的', '同的签', '的签约', '签约日', '约日期', '日期是', '期是什', '是什么', '什么时', '么时候', '合同的签', '同的签约', '的签约日', '签约日期', '约日期是', '日期是什', '期是什么', '是什么时', '什么时候'], target=同的签约日期
+2026-05-20 21:59:33 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 21:59:33 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:59:33 | DEBUG   | app.tracing:26 | [trace 4110cea13620] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.485}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4061}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3325}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.2776}]}
+2026-05-20 21:59:33 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 21:59:35 | DEBUG   | app.llm:103 | llm usage: prompt=1154 completion=19
+2026-05-20 21:59:35 | DEBUG   | app.tracing:26 | [trace 4110cea13620] llm_done {'chars': 23}
+2026-05-20 21:59:35 | INFO    | app.tracing:52 | trace saved -> ask_4110cea13620.json
+2026-05-20 21:59:48 | DEBUG   | app.retriever:136 | retrieve: query='合同的签约日期是什么时候', keywords=['合同的签约日期是什么时候', '合同', '同的', '的签', '签约', '约日', '日期', '期是', '是什', '么时', '时候', '合同的', '同的签', '的签约', '签约日', '约日期', '日期是', '期是什', '是什么', '什么时', '么时候', '合同的签', '同的签约', '的签约日', '签约日期', '约日期是', '日期是什', '期是什么', '是什么时', '什么时候'], target=同的签约日期
+2026-05-20 21:59:48 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 21:59:48 | DEBUG   | app.tracing:26 | [trace a891f64ed7cb] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.485}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4061}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3325}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.2776}]}
+2026-05-20 21:59:50 | DEBUG   | app.llm:103 | llm usage: prompt=1154 completion=25
+2026-05-20 21:59:50 | DEBUG   | app.tracing:26 | [trace a891f64ed7cb] llm_done {'chars': 33}
+2026-05-20 21:59:50 | INFO    | app.tracing:52 | trace saved -> ask_a891f64ed7cb.json
+2026-05-20 22:00:08 | DEBUG   | app.retriever:136 | retrieve: query='合同的甲方是哪个公司', keywords=['合同的甲方是哪个公司', '合同', '同的', '的甲', '甲方', '方是', '是哪', '哪个', '个公', '公司', '合同的', '同的甲', '的甲方', '甲方是', '方是哪', '是哪个', '哪个公', '个公司', '合同的甲', '同的甲方', '的甲方是', '甲方是哪', '方是哪个', '是哪个公', '哪个公司'], target=合同的甲方
+2026-05-20 22:00:08 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 22:00:08 | DEBUG   | app.retriever:196 | skip (hybrid=0.0575, vec=0.1916, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 22:00:08 | DEBUG   | app.tracing:26 | [trace 610a48fc4d44] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.4868}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4346}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.2625}]}
+2026-05-20 22:00:10 | DEBUG   | app.llm:103 | llm usage: prompt=1065 completion=12
+2026-05-20 22:00:10 | DEBUG   | app.tracing:26 | [trace 610a48fc4d44] llm_done {'chars': 19}
+2026-05-20 22:00:10 | INFO    | app.tracing:52 | trace saved -> ask_610a48fc4d44.json
+2026-05-20 22:01:12 | DEBUG   | app.retriever:136 | retrieve: query='甲方是谁', keywords=['甲方是谁', '甲方', '方是', '是谁', '甲方是', '方是谁'], target=甲方
+2026-05-20 22:01:50 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-20 22:01:50 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-20 22:01:50 | DEBUG   | app.retriever:196 | skip (hybrid=0.0587, vec=0.1958, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-20 22:01:50 | DEBUG   | app.retriever:196 | skip (hybrid=0.0074, vec=0.0247, kw=0.0): 2025 年 Q1 销售部门工作总结报告
+
+一、整体业绩
+
+本季度部门完成销售收入 4,200 万元，达成年度目标的 2
+2026-05-20 22:01:50 | DEBUG   | app.tracing:26 | [trace 63a44822c6d3] retrieved {'count': 2, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.3454}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.2603}]}
+2026-05-20 22:01:50 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-20 22:01:52 | DEBUG   | app.llm:103 | llm usage: prompt=703 completion=10
+2026-05-20 22:01:52 | DEBUG   | app.tracing:26 | [trace 63a44822c6d3] llm_done {'chars': 16}
+2026-05-20 22:01:52 | INFO    | app.tracing:52 | trace saved -> ask_63a44822c6d3.json
+2026-05-21 09:44:41 | DEBUG   | app.retriever:136 | retrieve: query='合同的违约责任有哪些？', keywords=['合同的违约责任有哪些', '合同', '同的', '的违', '违约', '约责', '责任', '任有', '有哪', '合同的', '同的违', '的违约', '违约责', '约责任', '责任有', '任有哪', '有哪些', '合同的违', '同的违约', '的违约责', '违约责任', '约责任有', '责任有哪', '任有哪些'], target=同的违约责任
+2026-05-21 09:46:37 | INFO    | app.tracing:52 | trace saved -> ask_0480a31b23d2.json
+2026-05-21 09:46:49 | DEBUG   | app.retriever:136 | retrieve: query='合同的违约责任有哪些？', keywords=['合同的违约责任有哪些', '合同', '同的', '的违', '违约', '约责', '责任', '任有', '有哪', '合同的', '同的违', '的违约', '违约责', '约责任', '责任有', '任有哪', '有哪些', '合同的违', '同的违约', '的违约责', '违约责任', '约责任有', '责任有哪', '任有哪些'], target=同的违约责任
+2026-05-21 09:47:26 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 09:47:26 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 09:47:26 | DEBUG   | app.retriever:196 | skip (hybrid=0.0981, vec=0.1402, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-21 09:47:26 | DEBUG   | app.tracing:26 | [trace 53c4bd5ae518] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.6909}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4991}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3105}]}
+2026-05-21 09:47:26 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 09:47:32 | DEBUG   | app.llm:103 | llm usage: prompt=1064 completion=141
+2026-05-21 09:47:32 | DEBUG   | app.tracing:26 | [trace 53c4bd5ae518] llm_done {'chars': 226}
+2026-05-21 09:47:32 | INFO    | app.tracing:52 | trace saved -> ask_53c4bd5ae518.json
+2026-05-21 09:50:02 | DEBUG   | app.retriever:136 | retrieve: query='合同的违约责任有哪些？', keywords=['合同的违约责任有哪些', '合同', '同的', '的违', '违约', '约责', '责任', '任有', '有哪', '合同的', '同的违', '的违约', '违约责', '约责任', '责任有', '任有哪', '有哪些', '合同的违', '同的违约', '的违约责', '违约责任', '约责任有', '责任有哪', '任有哪些'], target=同的违约责任
+2026-05-21 09:50:36 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 09:50:36 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 09:50:36 | DEBUG   | app.retriever:196 | skip (hybrid=0.0981, vec=0.1402, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-21 09:50:36 | DEBUG   | app.tracing:26 | [trace b4dfaa0608d4] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.6909}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4991}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.3105}]}
+2026-05-21 09:50:36 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 09:50:42 | DEBUG   | app.llm:103 | llm usage: prompt=1064 completion=141
+2026-05-21 09:50:42 | DEBUG   | app.tracing:26 | [trace b4dfaa0608d4] llm_done {'chars': 226}
+2026-05-21 09:50:42 | INFO    | app.tracing:52 | trace saved -> ask_b4dfaa0608d4.json
+2026-05-21 09:51:22 | DEBUG   | app.retriever:136 | retrieve: query='合同的甲方是谁？', keywords=['合同的甲方是谁', '合同', '同的', '的甲', '甲方', '方是', '是谁', '合同的', '同的甲', '的甲方', '甲方是', '方是谁', '合同的甲', '同的甲方', '的甲方是', '甲方是谁'], target=合同的甲方
+2026-05-21 09:51:55 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 09:51:55 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 09:51:55 | DEBUG   | app.retriever:196 | skip (hybrid=0.0614, vec=0.2047, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-21 09:51:55 | DEBUG   | app.tracing:26 | [trace 12370e38e262] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.5586}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.4088}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.2515}]}
+2026-05-21 09:51:55 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 09:51:58 | DEBUG   | app.llm:103 | llm usage: prompt=1063 completion=12
+2026-05-21 09:51:58 | DEBUG   | app.tracing:26 | [trace 12370e38e262] llm_done {'chars': 19}
+2026-05-21 09:51:58 | INFO    | app.tracing:52 | trace saved -> ask_12370e38e262.json
+2026-05-21 10:41:54 | DEBUG   | app.retriever:137 | retrieve: query='合同的甲方是谁？', keywords=['合同的甲方是谁', '合同', '同的', '的甲', '甲方', '方是', '是谁', '合同的', '同的甲', '的甲方', '甲方是', '方是谁', '合同的甲', '同的甲方', '的甲方是', '甲方是谁'], target=合同的甲方
+2026-05-21 10:42:11 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 10:42:11 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 10:42:11 | DEBUG   | app.retriever:197 | skip (hybrid=0.0614, vec=0.2047, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-21 10:42:11 | INFO    | app.rerank:19 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 10:43:12 | DEBUG   | app.tracing:26 | [trace 0382c127a650] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 8.1885}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 7.7974}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 7.3315}]}
+2026-05-21 10:43:12 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 10:43:17 | DEBUG   | app.llm:103 | llm usage: prompt=1063 completion=12
+2026-05-21 10:43:17 | DEBUG   | app.tracing:26 | [trace 0382c127a650] llm_done {'chars': 19}
+2026-05-21 10:43:17 | INFO    | app.tracing:52 | trace saved -> ask_0382c127a650.json
+2026-05-21 11:17:16 | DEBUG   | app.retriever:137 | retrieve: query='合同的甲方是谁？', keywords=['合同的甲方是谁', '合同', '同的', '的甲', '甲方', '方是', '是谁', '合同的', '同的甲', '的甲方', '甲方是', '方是谁', '合同的甲', '同的甲方', '的甲方是', '甲方是谁'], target=合同的甲方
+2026-05-21 11:17:31 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 11:17:32 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 11:17:32 | DEBUG   | app.retriever:197 | skip (hybrid=0.0614, vec=0.2047, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-21 11:17:32 | INFO    | app.rerank:21 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 11:17:43 | INFO    | app.rerank:31 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 11:20:24 | INFO    | app.tracing:52 | trace saved -> ask_537b27f998cf.json
+2026-05-21 11:25:45 | DEBUG   | app.retriever:137 | retrieve: query='合同的甲方是谁？', keywords=['合同的甲方是谁', '合同', '同的', '的甲', '甲方', '方是', '是谁', '合同的', '同的甲', '的甲方', '甲方是', '方是谁', '合同的甲', '同的甲方', '的甲方是', '甲方是谁'], target=合同的甲方
+2026-05-21 11:26:01 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 11:26:01 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 11:26:01 | DEBUG   | app.retriever:197 | skip (hybrid=0.0614, vec=0.2047, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-21 11:26:01 | INFO    | app.rerank:21 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 11:26:12 | INFO    | app.rerank:31 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 11:26:13 | INFO    | app.tracing:52 | trace saved -> ask_5db55889f615.json
+2026-05-21 11:28:34 | DEBUG   | app.retriever:137 | retrieve: query='合同的甲方是谁？', keywords=['合同的甲方是谁', '合同', '同的', '的甲', '甲方', '方是', '是谁', '合同的', '同的甲', '的甲方', '甲方是', '方是谁', '合同的甲', '同的甲方', '的甲方是', '甲方是谁'], target=合同的甲方
+2026-05-21 11:28:50 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 11:28:50 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 11:28:50 | DEBUG   | app.retriever:197 | skip (hybrid=0.0614, vec=0.2047, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
+2026-05-21 11:28:50 | INFO    | app.rerank:23 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 11:29:01 | INFO    | app.rerank:33 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 11:29:07 | DEBUG   | app.tracing:26 | [trace 5d0c3a063daf] retrieved {'count': 3, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.5505}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.5498}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.5498}]}
+2026-05-21 11:29:07 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 11:29:11 | DEBUG   | app.llm:103 | llm usage: prompt=1063 completion=12
+2026-05-21 11:29:11 | DEBUG   | app.tracing:26 | [trace 5d0c3a063daf] llm_done {'chars': 19}
+2026-05-21 11:29:11 | INFO    | app.tracing:52 | trace saved -> ask_5d0c3a063daf.json
+2026-05-21 11:30:37 | DEBUG   | app.retriever:137 | retrieve: query='合同的签约日期是什么时候？', keywords=['合同的签约日期是什么时候', '合同', '同的', '的签', '签约', '约日', '日期', '期是', '是什', '么时', '时候', '合同的', '同的签', '的签约', '签约日', '约日期', '日期是', '期是什', '是什么', '什么时', '么时候', '合同的签', '同的签约', '的签约日', '签约日期', '约日期是', '日期是什', '期是什么', '是什么时', '什么时候'], target=同的签约日期
+2026-05-21 11:30:53 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 11:30:53 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 11:30:53 | INFO    | app.rerank:23 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 11:31:04 | INFO    | app.rerank:33 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 11:31:10 | DEBUG   | app.tracing:26 | [trace 24aab1e272d1] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.8605}, {'rank': 2, 'doc': 'sample_report.txt', 'score': 0.553}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.5498}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.5498}]}
+2026-05-21 11:31:10 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 11:31:13 | DEBUG   | app.llm:103 | llm usage: prompt=1154 completion=25
+2026-05-21 11:31:13 | DEBUG   | app.tracing:26 | [trace 24aab1e272d1] llm_done {'chars': 33}
+2026-05-21 11:31:13 | INFO    | app.tracing:52 | trace saved -> ask_24aab1e272d1.json
+2026-05-21 11:32:08 | DEBUG   | app.retriever:137 | retrieve: query='合同的下季度计划是什么？', keywords=['合同的下季度计划是什么', '合同', '同的', '的下', '下季', '季度', '度计', '计划', '划是', '是什', '合同的', '同的下', '的下季', '下季度', '季度计', '度计划', '计划是', '划是什', '是什么', '合同的下', '同的下季', '的下季度', '下季度计', '季度计划', '度计划是', '计划是什', '划是什么'], target=的下季度计划
+2026-05-21 11:32:23 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 11:32:23 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 11:32:23 | INFO    | app.rerank:23 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 11:32:34 | INFO    | app.rerank:33 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 11:32:39 | DEBUG   | app.tracing:26 | [trace 03673bdd2c1c] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_report.txt', 'score': 0.7776}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.5499}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.5498}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.5495}]}
+2026-05-21 11:32:39 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 11:32:47 | DEBUG   | app.llm:103 | llm usage: prompt=1154 completion=175
+2026-05-21 11:32:47 | DEBUG   | app.tracing:26 | [trace 03673bdd2c1c] llm_done {'chars': 263}
+2026-05-21 11:32:47 | INFO    | app.tracing:52 | trace saved -> ask_03673bdd2c1c.json
+2026-05-21 12:23:41 | DEBUG   | app.retriever:137 | retrieve: query='合同的乙方是谁', keywords=['合同的乙方是谁', '合同', '同的', '的乙', '乙方', '方是', '是谁', '合同的', '同的乙', '的乙方', '乙方是', '方是谁', '合同的乙', '同的乙方', '的乙方是', '乙方是谁'], target=合同的乙方
+2026-05-21 12:23:59 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 12:24:00 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 12:24:00 | INFO    | app.rerank:23 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 12:24:13 | INFO    | app.rerank:33 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 12:24:20 | DEBUG   | app.tracing:26 | [trace c22cb37c446f] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': 'sample_contract.md', 'score': 0.5508}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.5499}, {'rank': 3, 'doc': 'sample_report.txt', 'score': 0.5496}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.5484}]}
+2026-05-21 12:24:20 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 12:24:23 | DEBUG   | app.llm:103 | llm usage: prompt=1152 completion=12
+2026-05-21 12:24:23 | DEBUG   | app.tracing:26 | [trace c22cb37c446f] llm_done {'chars': 17}
+2026-05-21 12:24:23 | INFO    | app.tracing:52 | trace saved -> ask_c22cb37c446f.json
+2026-05-21 12:24:42 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 12:24:42 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 12:24:45 | DEBUG   | app.tracing:26 | [trace 7638fb103fed] retrieved {'count': 4}
+2026-05-21 12:24:56 | DEBUG   | app.llm:103 | llm usage: prompt=1184 completion=358
+2026-05-21 12:24:56 | DEBUG   | app.tracing:26 | [trace 7638fb103fed] llm_done {'ok': True}
+2026-05-21 12:24:56 | INFO    | app.tracing:52 | trace saved -> summarize_7638fb103fed.json
+2026-05-21 12:38:00 | INFO    | app.main:68 | upload received: 远航公司财务报告.pdf (745914 bytes)
+2026-05-21 12:38:01 | DEBUG   | app.tracing:26 | [trace a76b0e8091b4] parsed {'doc_id': '远航公司财务报告-bdf70851b1', 'pages': 4}
+2026-05-21 12:38:01 | DEBUG   | app.tracing:26 | [trace a76b0e8091b4] chunked {'chunks': 7}
+2026-05-21 12:38:02 | DEBUG   | app.llm:74 | embed_texts[local]: 7 条 -> dim=384
+2026-05-21 12:38:02 | INFO    | app.ingest:122 | ingest: 远航公司财务报告.pdf -> 7 chunks
+2026-05-21 12:38:02 | DEBUG   | app.tracing:26 | [trace a76b0e8091b4] indexed {'count': 7}
+2026-05-21 12:38:02 | INFO    | app.tracing:52 | trace saved -> ingest_a76b0e8091b4.json
+2026-05-21 12:38:59 | DEBUG   | app.retriever:137 | retrieve: query='远航公司2025年营业收入多少？盈利还是亏损', keywords=['远航公司', '远航', '航公', '公司', '远航公', '航公司', '2025', '年营业收入多少', '年营', '营业', '业收', '收入', '入多', '年营业', '营业收', '业收入', '收入多', '入多少', '年营业收', '营业收入', '业收入多', '收入多少', '盈利还是亏损', '盈利', '利还', '还是', '是亏', '亏损', '盈利还', '利还是', '还是亏', '是亏损', '盈利还是', '利还是亏', '还是亏损'], target=None
+2026-05-21 12:38:59 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 12:39:01 | DEBUG   | app.tracing:26 | [trace e873c10fc771] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': '远航公司财务报告.pdf', 'score': 0.632}, {'rank': 2, 'doc': 'sample_report.txt', 'score': 0.6042}, {'rank': 3, 'doc': '远航公司财务报告.pdf', 'score': 0.55}, {'rank': 4, 'doc': '远航公司财务报告.pdf', 'score': 0.5495}]}
+2026-05-21 12:39:04 | DEBUG   | app.llm:103 | llm usage: prompt=1517 completion=50
+2026-05-21 12:39:04 | DEBUG   | app.tracing:26 | [trace e873c10fc771] llm_done {'chars': 66}
+2026-05-21 12:39:04 | INFO    | app.tracing:52 | trace saved -> ask_e873c10fc771.json
+2026-05-21 12:40:43 | DEBUG   | app.retriever:137 | retrieve: query='远航公司是否存在借款？借款为多少？', keywords=['远航公司是否存在借款', '远航', '航公', '公司', '司是', '是否', '否存', '存在', '在借', '借款', '远航公', '航公司', '公司是', '司是否', '是否存', '否存在', '存在借', '在借款', '远航公司', '航公司是', '公司是否', '司是否存', '是否存在', '否存在借', '存在借款', '借款为多少', '款为', '为多', '借款为', '款为多', '为多少', '借款为多', '款为多少'], target=None
+2026-05-21 12:40:43 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 12:40:46 | DEBUG   | app.tracing:26 | [trace 84a416b22482] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': '远航公司财务报告.pdf', 'score': 0.5498}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.5496}, {'rank': 3, 'doc': '远航公司财务报告.pdf', 'score': 0.5494}, {'rank': 4, 'doc': '远航公司财务报告.pdf', 'score': 0.548}]}
+2026-05-21 12:40:50 | DEBUG   | app.llm:103 | llm usage: prompt=1552 completion=30
+2026-05-21 12:40:50 | DEBUG   | app.tracing:26 | [trace 84a416b22482] llm_done {'chars': 45}
+2026-05-21 12:40:50 | INFO    | app.tracing:52 | trace saved -> ask_84a416b22482.json
+2026-05-21 12:44:07 | DEBUG   | app.retriever:137 | retrieve: query='远航公司是否存在借款？', keywords=['远航公司是否存在借款', '远航', '航公', '公司', '司是', '是否', '否存', '存在', '在借', '借款', '远航公', '航公司', '公司是', '司是否', '是否存', '否存在', '存在借', '在借款', '远航公司', '航公司是', '公司是否', '司是否存', '是否存在', '否存在借', '存在借款'], target=None
+2026-05-21 12:44:23 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 12:44:23 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 12:44:23 | INFO    | app.rerank:23 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 12:44:35 | INFO    | app.rerank:33 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 12:44:40 | DEBUG   | app.tracing:26 | [trace fccdcddcb46d] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': '远航公司财务报告.pdf', 'score': 0.5499}, {'rank': 2, 'doc': 'sample_contract.md', 'score': 0.5498}, {'rank': 3, 'doc': '远航公司财务报告.pdf', 'score': 0.5496}, {'rank': 4, 'doc': '远航公司财务报告.pdf', 'score': 0.5478}]}
+2026-05-21 12:44:40 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 12:44:46 | DEBUG   | app.llm:103 | llm usage: prompt=1548 completion=44
+2026-05-21 12:44:46 | DEBUG   | app.tracing:26 | [trace fccdcddcb46d] llm_done {'chars': 61}
+2026-05-21 12:44:46 | INFO    | app.tracing:52 | trace saved -> ask_fccdcddcb46d.json
+2026-05-21 12:54:47 | DEBUG   | app.retriever:137 | retrieve: query='远航公司是否存在借款？', keywords=['远航公司是否存在借款', '远航', '航公', '公司', '司是', '是否', '否存', '存在', '在借', '借款', '远航公', '航公司', '公司是', '司是否', '是否存', '否存在', '存在借', '在借款', '远航公司', '航公司是', '公司是否', '司是否存', '是否存在', '否存在借', '存在借款'], target=None
+2026-05-21 12:55:05 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 12:55:05 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 12:55:05 | INFO    | app.rerank:24 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 12:55:19 | INFO    | app.rerank:34 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 12:55:25 | DEBUG   | app.tracing:26 | [trace 5ec5667a398f] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': '远航公司财务报告.pdf', 'score': 0.3336}, {'rank': 2, 'doc': '远航公司财务报告.pdf', 'score': 0.3198}, {'rank': 3, 'doc': '远航公司财务报告.pdf', 'score': 0.2859}, {'rank': 4, 'doc': 'sample_contract.md', 'score': 0.2618}]}
+2026-05-21 12:55:25 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 12:55:28 | DEBUG   | app.llm:103 | llm usage: prompt=1548 completion=44
+2026-05-21 12:55:28 | DEBUG   | app.tracing:26 | [trace 5ec5667a398f] llm_done {'chars': 61}
+2026-05-21 12:55:28 | INFO    | app.tracing:52 | trace saved -> ask_5ec5667a398f.json
+2026-05-21 12:57:15 | DEBUG   | app.retriever:137 | retrieve: query='给出远航公司财务报告的审计师信息。', keywords=['给出远航公司财务报告的审计师信息', '给出', '出远', '远航', '航公', '公司', '司财', '财务', '务报', '报告', '告的', '的审', '审计', '计师', '师信', '信息', '给出远', '出远航', '远航公', '航公司', '公司财', '司财务', '财务报', '务报告', '报告的', '告的审', '的审计', '审计师', '计师信', '师信息', '给出远航', '出远航公', '远航公司', '航公司财', '公司财务', '司财务报', '财务报告', '务报告的', '报告的审', '告的审计', '的审计师', '审计师信', '计师信息'], target=None
+2026-05-21 12:57:34 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 12:57:34 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 12:57:34 | INFO    | app.rerank:24 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 12:57:47 | INFO    | app.rerank:34 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 12:57:53 | DEBUG   | app.tracing:26 | [trace a488f3100046] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': '远航公司财务报告.pdf', 'score': 0.4079}, {'rank': 2, 'doc': '远航公司财务报告.pdf', 'score': 0.3751}, {'rank': 3, 'doc': '远航公司财务报告.pdf', 'score': 0.3626}, {'rank': 4, 'doc': 'sample_report.txt', 'score': 0.2564}]}
+2026-05-21 12:57:53 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 12:57:56 | DEBUG   | app.llm:103 | llm usage: prompt=1389 completion=28
+2026-05-21 12:57:56 | DEBUG   | app.tracing:26 | [trace a488f3100046] llm_done {'chars': 40}
+2026-05-21 12:57:56 | INFO    | app.tracing:52 | trace saved -> ask_a488f3100046.json
+2026-05-21 16:14:57 | DEBUG   | app.retriever:137 | retrieve: query='给出远航公司的审计人信息', keywords=['给出远航公司的审计人信息', '给出', '出远', '远航', '航公', '公司', '司的', '的审', '审计', '计人', '人信', '信息', '给出远', '出远航', '远航公', '航公司', '公司的', '司的审', '的审计', '审计人', '计人信', '人信息', '给出远航', '出远航公', '远航公司', '航公司的', '公司的审', '司的审计', '的审计人', '审计人信', '计人信息'], target=None
+2026-05-21 16:15:15 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:15:16 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:15:16 | INFO    | app.rerank:24 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 16:15:30 | INFO    | app.rerank:34 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 16:15:39 | DEBUG   | app.tracing:26 | [trace cb6718733e56] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': '远航公司财务报告.pdf', 'score': 0.759}, {'rank': 2, 'doc': '远航公司财务报告.pdf', 'score': 0.3123}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.2788}, {'rank': 4, 'doc': '远航公司财务报告.pdf', 'score': 0.2691}]}
+2026-05-21 16:15:39 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 16:15:43 | DEBUG   | app.llm:103 | llm usage: prompt=1378 completion=25
+2026-05-21 16:15:43 | DEBUG   | app.tracing:26 | [trace cb6718733e56] llm_done {'chars': 37}
+2026-05-21 16:15:43 | INFO    | app.tracing:52 | trace saved -> ask_cb6718733e56.json
+2026-05-21 16:16:43 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:16:43 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:16:43 | DEBUG   | app.retriever:197 | skip (hybrid=0.095, vec=0.2374, kw=0.0): 华信会计师事务所
+中国注册会计师：陈静、李瑞
+2026年 3⽉ 10 ⽇
+⼋、 备查⽂件⽬录
+1. 载有法定代表⼈、财务
+2026-05-21 16:16:43 | DEBUG   | app.retriever:197 | skip (hybrid=0.0894, vec=0.2234, kw=0.0): 项⽬ 2025年 2024年同⽐增减
+营业收⼊ 158,200 120,500 +31.3%
+营业利润 38,500 2
+2026-05-21 16:16:43 | DEBUG   | app.retriever:197 | skip (hybrid=0.0874, vec=0.2185, kw=0.0): 3. ⻛险因素
+技术迭代⻛险： AI ⼤模型领域竞争加剧。
+客⼾集中度⻛险：前五⼤客⼾占⽐  26% ，较上年下降  4
+2026-05-21 16:16:43 | DEBUG   | app.retriever:197 | skip (hybrid=0.0834, vec=0.2086, kw=0.0): 1. 收⼊确认政策 ：SaaS订阅服务在服务期内按直线法确认；⼀次性软件授权在控制权转移时确认。
+2. 应收账款账龄 ：
+2026-05-21 16:16:43 | DEBUG   | app.retriever:197 | skip (hybrid=0.0745, vec=0.1863, kw=0.0): 项⽬ 2025年度 2024年度
+营业收⼊ 158,200 120,500
+减：营业成本 52,000 42,000
+税
+2026-05-21 16:16:47 | DEBUG   | app.tracing:26 | [trace 4bea02146b52] retrieved {'count': 6}
+2026-05-21 16:17:02 | DEBUG   | app.llm:103 | llm usage: prompt=1944 completion=474
+2026-05-21 16:17:02 | DEBUG   | app.tracing:26 | [trace 4bea02146b52] llm_done {'ok': True}
+2026-05-21 16:17:02 | INFO    | app.tracing:52 | trace saved -> summarize_4bea02146b52.json
+2026-05-21 16:18:09 | DEBUG   | app.retriever:137 | retrieve: query='给出远航公司的审计人信息', keywords=['给出远航公司的审计人信息', '给出', '出远', '远航', '航公', '公司', '司的', '的审', '审计', '计人', '人信', '信息', '给出远', '出远航', '远航公', '航公司', '公司的', '司的审', '的审计', '审计人', '计人信', '人信息', '给出远航', '出远航公', '远航公司', '航公司的', '公司的审', '司的审计', '的审计人', '审计人信', '计人信息'], target=None
+2026-05-21 16:18:09 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:18:11 | DEBUG   | app.tracing:26 | [trace ad2472b4c585] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': '远航公司财务报告.pdf', 'score': 0.759}, {'rank': 2, 'doc': '远航公司财务报告.pdf', 'score': 0.3123}, {'rank': 3, 'doc': 'sample_contract.md', 'score': 0.2788}, {'rank': 4, 'doc': '远航公司财务报告.pdf', 'score': 0.2691}]}
+2026-05-21 16:18:13 | DEBUG   | app.llm:103 | llm usage: prompt=1378 completion=25
+2026-05-21 16:18:13 | DEBUG   | app.tracing:26 | [trace ad2472b4c585] llm_done {'chars': 37}
+2026-05-21 16:18:13 | INFO    | app.tracing:52 | trace saved -> ask_ad2472b4c585.json
+2026-05-21 16:23:41 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:23:41 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:23:42 | DEBUG   | app.tracing:26 | [trace 4330724dd9f5] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:23:42 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A698937B00>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A69F0AC680>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:23:42 | INFO    | app.tracing:52 | trace saved -> summarize_4330724dd9f5.json
+2026-05-21 16:23:43 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:23:43 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:23:43 | DEBUG   | app.tracing:26 | [trace 13ff619ebdf3] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:23:43 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A6999C6580>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A69F0ACBF0>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:23:43 | INFO    | app.tracing:52 | trace saved -> summarize_13ff619ebdf3.json
+2026-05-21 16:23:44 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:23:44 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:23:44 | DEBUG   | app.tracing:26 | [trace d3f39067909e] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:23:44 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A6988BF000>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A699F0B5F0>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:23:44 | INFO    | app.tracing:52 | trace saved -> summarize_d3f39067909e.json
+2026-05-21 16:23:48 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:23:48 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:23:48 | DEBUG   | app.tracing:26 | [trace bde6a99e095b] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:23:48 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A6988BBDC0>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A699DAF8C0>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:23:48 | INFO    | app.tracing:52 | trace saved -> summarize_bde6a99e095b.json
+2026-05-21 16:25:15 | DEBUG   | app.tracing:26 | [trace b0337483c76d] parsed {'doc_id': 'sample_report-f6875b4dcb', 'pages': 1}
+2026-05-21 16:25:15 | DEBUG   | app.tracing:26 | [trace b0337483c76d] chunked {'chunks': 2}
+2026-05-21 16:25:31 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:25:31 | DEBUG   | app.llm:74 | embed_texts[local]: 2 条 -> dim=384
+2026-05-21 16:25:31 | INFO    | app.ingest:122 | ingest: sample_report.txt -> 2 chunks
+2026-05-21 16:25:31 | DEBUG   | app.tracing:26 | [trace b0337483c76d] indexed {'count': 2}
+2026-05-21 16:25:31 | INFO    | app.tracing:52 | trace saved -> ingest_b0337483c76d.json
+2026-05-21 16:25:47 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:25:47 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:25:47 | DEBUG   | app.tracing:26 | [trace 171a51096dfe] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:25:47 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A69AD1AB80>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A699C9C170>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:25:47 | INFO    | app.tracing:52 | trace saved -> summarize_171a51096dfe.json
+2026-05-21 16:25:49 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:25:49 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:25:49 | DEBUG   | app.tracing:26 | [trace a2d23cbc43f9] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:25:49 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A6999C6580>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A699D533E0>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:25:49 | INFO    | app.tracing:52 | trace saved -> summarize_a2d23cbc43f9.json
+2026-05-21 16:26:57 | DEBUG   | app.retriever:137 | retrieve: query='sample_report.txt', keywords=['sample', 'report', 'txt'], target=None
+2026-05-21 16:27:13 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:27:13 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:27:13 | INFO    | app.rerank:24 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 16:27:24 | INFO    | app.rerank:34 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 16:27:29 | DEBUG   | app.tracing:26 | [trace da04237016f7] retrieved {'count': 2}
+2026-05-21 16:27:29 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 16:27:39 | DEBUG   | app.llm:103 | llm usage: prompt=605 completion=295
+2026-05-21 16:27:39 | DEBUG   | app.tracing:26 | [trace da04237016f7] llm_done {'ok': True}
+2026-05-21 16:27:39 | INFO    | app.tracing:52 | trace saved -> summarize_da04237016f7.json
+2026-05-21 16:30:00 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:30:00 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:30:00 | DEBUG   | app.tracing:26 | [trace edc6e81fca84] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:30:00 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A6988A2D80>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A69F0ACB00>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:30:00 | INFO    | app.tracing:52 | trace saved -> summarize_edc6e81fca84.json
+2026-05-21 16:30:01 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:30:01 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:30:01 | DEBUG   | app.tracing:26 | [trace 8637ffbd3246] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:30:01 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A6999C6580>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A699E743E0>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:30:01 | INFO    | app.tracing:52 | trace saved -> summarize_8637ffbd3246.json
+2026-05-21 16:30:05 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:30:05 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:30:05 | DEBUG   | app.tracing:26 | [trace eb8de0b4201f] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:30:05 | ERROR   | app.main:101 | summarize failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function summarize at 0x000002A6999B8CC0>, req=SummaryReq(doc_name=None, top_k=12))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A69AD5F180>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 98, in summarize
+    result = summarize_doc(req.doc_name, top_k=req.top_k, trace=t)
+             │             │   │               │   │            └ <app.tracing.Trace object at 0x000002A699D75FA0>
+             │             │   │               │   └ 12
+             │             │   │               └ SummaryReq(doc_name=None, top_k=12)
+             │             │   └ None
+             │             └ SummaryReq(doc_name=None, top_k=12)
+             └ <function summarize_doc at 0x000002A6F9DF8D60>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 42, in summarize_doc
+    hits = retrieve(query, top_k=top_k)
+           │        │            └ 12
+           │        └ '整体概要'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:30:05 | INFO    | app.tracing:52 | trace saved -> summarize_eb8de0b4201f.json
+2026-05-21 16:30:52 | INFO    | app.main:68 | upload received: 远航公司财务报告.pdf (745914 bytes)
+2026-05-21 16:30:53 | DEBUG   | app.tracing:26 | [trace cef914f535aa] parsed {'doc_id': '远航公司财务报告-bdf70851b1', 'pages': 4}
+2026-05-21 16:30:53 | DEBUG   | app.tracing:26 | [trace cef914f535aa] chunked {'chunks': 7}
+2026-05-21 16:30:53 | DEBUG   | app.llm:74 | embed_texts[local]: 7 条 -> dim=384
+2026-05-21 16:30:53 | INFO    | app.ingest:122 | ingest: 远航公司财务报告.pdf -> 7 chunks
+2026-05-21 16:30:53 | DEBUG   | app.tracing:26 | [trace cef914f535aa] indexed {'count': 7}
+2026-05-21 16:30:53 | INFO    | app.tracing:52 | trace saved -> ingest_cef914f535aa.json
+2026-05-21 16:31:09 | DEBUG   | app.retriever:137 | retrieve: query='远航公司是否有欠债', keywords=['远航公司是否有欠债', '远航', '航公', '公司', '司是', '是否', '否有', '有欠', '欠债', '远航公', '航公司', '公司是', '司是否', '是否有', '否有欠', '有欠债', '远航公司', '航公司是', '公司是否', '司是否有', '是否有欠', '否有欠债'], target=None
+2026-05-21 16:31:09 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:31:09 | DEBUG   | app.tracing:26 | [trace ff2026417a86] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:31:09 | ERROR   | app.main:89 | ask failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function ask at 0x000002A6999B85E0>, req=AskReq(question='远航公司是否有欠债', top_k=None))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A699F11A00>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 86, in ask
+    result = answer_question(req.question, top_k=req.top_k, trace=t)
+             │               │   │               │   │            └ <app.tracing.Trace object at 0x000002A69F5E76B0>
+             │               │   │               │   └ None
+             │               │   │               └ AskReq(question='远航公司是否有欠债', top_k=None)
+             │               │   └ '远航公司是否有欠债'
+             │               └ AskReq(question='远航公司是否有欠债', top_k=None)
+             └ <function answer_question at 0x000002A6F9CDF380>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 14, in answer_question
+    hits = retrieve(question, top_k=top_k)
+           │        │               └ None
+           │        └ '远航公司是否有欠债'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:31:09 | INFO    | app.tracing:52 | trace saved -> ask_ff2026417a86.json
+2026-05-21 16:31:10 | DEBUG   | app.retriever:137 | retrieve: query='远航公司是否有欠债', keywords=['远航公司是否有欠债', '远航', '航公', '公司', '司是', '是否', '否有', '有欠', '欠债', '远航公', '航公司', '公司是', '司是否', '是否有', '否有欠', '有欠债', '远航公司', '航公司是', '公司是否', '司是否有', '是否有欠', '否有欠债'], target=None
+2026-05-21 16:31:11 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:31:11 | DEBUG   | app.tracing:26 | [trace f33d9f80eb67] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:31:11 | ERROR   | app.main:89 | ask failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function ask at 0x000002A6999B85E0>, req=AskReq(question='远航公司是否有欠债', top_k=None))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A69AD44BC0>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 86, in ask
+    result = answer_question(req.question, top_k=req.top_k, trace=t)
+             │               │   │               │   │            └ <app.tracing.Trace object at 0x000002A6A46142F0>
+             │               │   │               │   └ None
+             │               │   │               └ AskReq(question='远航公司是否有欠债', top_k=None)
+             │               │   └ '远航公司是否有欠债'
+             │               └ AskReq(question='远航公司是否有欠债', top_k=None)
+             └ <function answer_question at 0x000002A6F9CDF380>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 14, in answer_question
+    hits = retrieve(question, top_k=top_k)
+           │        │               └ None
+           │        └ '远航公司是否有欠债'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:31:11 | INFO    | app.tracing:52 | trace saved -> ask_f33d9f80eb67.json
+2026-05-21 16:31:11 | DEBUG   | app.retriever:137 | retrieve: query='远航公司是否有欠债', keywords=['远航公司是否有欠债', '远航', '航公', '公司', '司是', '是否', '否有', '有欠', '欠债', '远航公', '航公司', '公司是', '司是否', '是否有', '否有欠', '有欠债', '远航公司', '航公司是', '公司是否', '司是否有', '是否有欠', '否有欠债'], target=None
+2026-05-21 16:31:11 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:31:11 | DEBUG   | app.tracing:26 | [trace 9fd4a5966254] error {'msg': "'NoneType' object has no attribute 'get'"}
+2026-05-21 16:31:11 | ERROR   | app.main:89 | ask failed
+Traceback (most recent call last):
+
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002A6E4CE25C0>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "C:\Windows\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x000002A6999BBA60>
+    └ <WorkerThread(AnyIO worker thread, started 16472)>
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+             │       │   │      └ ()
+             │       │   └ functools.partial(<function ask at 0x000002A6999B85E0>, req=AskReq(question='远航公司是否有欠债', top_k=None))
+             │       └ <method 'run' of '_contextvars.Context' objects>
+             └ <_contextvars.Context object at 0x000002A699A2F840>
+
+> File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\main.py", line 86, in ask
+    result = answer_question(req.question, top_k=req.top_k, trace=t)
+             │               │   │               │   │            └ <app.tracing.Trace object at 0x000002A6A4614BF0>
+             │               │   │               │   └ None
+             │               │   │               └ AskReq(question='远航公司是否有欠债', top_k=None)
+             │               │   └ '远航公司是否有欠债'
+             │               └ AskReq(question='远航公司是否有欠债', top_k=None)
+             └ <function answer_question at 0x000002A6F9CDF380>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\pipeline.py", line 14, in answer_question
+    hits = retrieve(question, top_k=top_k)
+           │        │               └ None
+           │        └ '远航公司是否有欠债'
+           └ <function retrieve at 0x000002A6988B47C0>
+
+  File "D:\ZhaiYAN\ZhaiYAN\zzj\work\PyCharm project\MVP\app\retriever.py", line 156, in retrieve
+    "doc_name": m.get("doc_name"),
+                └ None
+
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-05-21 16:31:11 | INFO    | app.tracing:52 | trace saved -> ask_9fd4a5966254.json
+2026-05-21 16:32:05 | DEBUG   | app.retriever:137 | retrieve: query='远航公司是否有欠债', keywords=['远航公司是否有欠债', '远航', '航公', '公司', '司是', '是否', '否有', '有欠', '欠债', '远航公', '航公司', '公司是', '司是否', '是否有', '否有欠', '有欠债', '远航公司', '航公司是', '公司是否', '司是否有', '是否有欠', '否有欠债'], target=None
+2026-05-21 16:32:22 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:32:22 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:32:23 | INFO    | app.rerank:24 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 16:32:36 | INFO    | app.rerank:34 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 16:32:41 | DEBUG   | app.tracing:26 | [trace 4393284db67c] retrieved {'count': 4, 'preview': [{'rank': 1, 'doc': '远航公司财务报告.pdf', 'score': 0.3314}, {'rank': 2, 'doc': '远航公司财务报告.pdf', 'score': 0.3309}, {'rank': 3, 'doc': '远航公司财务报告.pdf', 'score': 0.3293}, {'rank': 4, 'doc': '远航公司财务报告.pdf', 'score': 0.2772}]}
+2026-05-21 16:32:41 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 16:32:46 | DEBUG   | app.llm:103 | llm usage: prompt=1448 completion=108
+2026-05-21 16:32:46 | DEBUG   | app.tracing:26 | [trace 4393284db67c] llm_done {'chars': 147}
+2026-05-21 16:32:46 | INFO    | app.tracing:52 | trace saved -> ask_4393284db67c.json
+2026-05-21 16:32:49 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:32:49 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:32:49 | DEBUG   | app.retriever:197 | skip (hybrid=0.095, vec=0.2374, kw=0.0): 华信会计师事务所
+中国注册会计师：陈静、李瑞
+2026年 3⽉ 10 ⽇
+⼋、 备查⽂件⽬录
+1. 载有法定代表⼈、财务
+2026-05-21 16:32:49 | DEBUG   | app.retriever:197 | skip (hybrid=0.0894, vec=0.2234, kw=0.0): 项⽬ 2025年 2024年同⽐增减
+营业收⼊ 158,200 120,500 +31.3%
+营业利润 38,500 2
+2026-05-21 16:32:49 | DEBUG   | app.retriever:197 | skip (hybrid=0.0874, vec=0.2185, kw=0.0): 3. ⻛险因素
+技术迭代⻛险： AI ⼤模型领域竞争加剧。
+客⼾集中度⻛险：前五⼤客⼾占⽐  26% ，较上年下降  4
+2026-05-21 16:32:49 | DEBUG   | app.retriever:197 | skip (hybrid=0.0834, vec=0.2086, kw=0.0): 1. 收⼊确认政策 ：SaaS订阅服务在服务期内按直线法确认；⼀次性软件授权在控制权转移时确认。
+2. 应收账款账龄 ：
+2026-05-21 16:32:49 | DEBUG   | app.retriever:197 | skip (hybrid=0.0745, vec=0.1863, kw=0.0): 项⽬ 2025年度 2024年度
+营业收⼊ 158,200 120,500
+减：营业成本 52,000 42,000
+税
+2026-05-21 16:32:52 | DEBUG   | app.tracing:26 | [trace a393fb4f5c52] retrieved {'count': 4}
+2026-05-21 16:33:12 | DEBUG   | app.llm:103 | llm usage: prompt=1365 completion=396
+2026-05-21 16:33:12 | DEBUG   | app.tracing:26 | [trace a393fb4f5c52] llm_done {'ok': True}
+2026-05-21 16:33:12 | INFO    | app.tracing:52 | trace saved -> summarize_a393fb4f5c52.json
+2026-05-21 16:33:16 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:33:16 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:34:03 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:34:03 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:34:19 | DEBUG   | app.retriever:137 | retrieve: query='整体概要', keywords=['整体概要', '整体', '体概', '概要', '整体概', '体概要'], target=None
+2026-05-21 16:34:37 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:34:37 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:34:37 | INFO    | app.rerank:24 | 加载 rerank 模型: cross-encoder/ms-marco-MiniLM-L-6-v2
+2026-05-21 16:34:51 | INFO    | app.rerank:34 | 加载 QA 抽取模型: uer/roberta-base-chinese-extractive-qa
+2026-05-21 16:34:55 | DEBUG   | app.tracing:26 | [trace 40c3c675d286] retrieved {'count': 2}
+2026-05-21 16:34:55 | INFO    | app.llm:23 | 使用代理: http://127.0.0.1:7897
+2026-05-21 16:35:06 | DEBUG   | app.llm:103 | llm usage: prompt=605 completion=293
+2026-05-21 16:35:06 | DEBUG   | app.tracing:26 | [trace 40c3c675d286] llm_done {'ok': True}
+2026-05-21 16:35:06 | INFO    | app.tracing:52 | trace saved -> summarize_40c3c675d286.json
+2026-05-21 16:35:11 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:35:11 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:35:11 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:36:22 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:36:22 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:37:19 | DEBUG   | app.retriever:137 | retrieve: query='远航公司是否有欠债', keywords=['远航公司是否有欠债', '远航', '航公', '公司', '司是', '是否', '否有', '有欠', '欠债', '远航公', '航公司', '公司是', '司是否', '是否有', '否有欠', '有欠债', '远航公司', '航公司是', '公司是否', '司是否有', '是否有欠', '否有欠债'], target=None
+2026-05-21 16:37:37 | INFO    | app.llm:64 | 本地 Embedding 模型已加载 (paraphrase-multilingual-MiniLM-L12-v2)
+2026-05-21 16:37:37 | DEBUG   | app.llm:74 | embed_texts[local]: 1 条 -> dim=384
+2026-05-21 16:37:37 | DEBUG   | app.retriever:197 | skip (hybrid=0.04, vec=0.1001, kw=0.0): 五、人员情况
+
+当前团队规模 22 人（含 3 名实习生），Q1 离职 1 人（主动），新入职 2 人。
+团队士气良好，
