@@ -138,43 +138,44 @@ graph LR
 
 ```mermaid
 flowchart TD
-    A[上传文件] --> B[parse_file 根据后缀解析]
-    B --> C[pages[(page_no, text)]]
-    C --> D[RecursiveCharacterTextSplitter]
-    D --> E[chunks + metadata(doc_id, doc_name, page, chunk_index)]
-    E --> F{EMBED_PROVIDER?}
-    F -->|local| G1[paraphrase-multilingual-MiniLM-L12-v2]
-    F -->|api| G2[OpenAI 兼容 Embedding]
-    G1 & G2 --> H[embeddings]
-    H --> I[ChromaDB.add 持久化]
-    I --> J[Trace / Log]
-    J --> K[返回 doc_id · chunks · pages]
+    A["上传文件"] --> B["parse_file 根据后缀解析"]
+    B --> C["pages([page_no, text])"]
+    C --> D["RecursiveCharacterTextSplitter"]
+    D --> E["chunks + metadata(doc_id, doc_name, page, chunk_index)"]
+    E --> F["EMBED_PROVIDER?"]
+    F --> G1["paragraphse_multilingual-MiniLM-L12-v2"]
+    F --> G2["另一个Embedding模型 (如OpenAI)"]
+    G1 --> H["embeddings"]
+    G2 --> H
+    H --> I["ChromaDB.add 持久化"]
+    I --> J["Trace / Log"]
+    J --> K["返回 doc_id · chunks · pages"]
 ```
 
 ### 问答流程（Ask）
 
 ```mermaid
 flowchart TD
-    Q[问题] --> R[混合检索 (向量 + 关键词)]
-    R --> CH[ChromaDB]
-    R --> HITS[候选 hits]
-    HITS --> RE[CrossEncoder Rerank + 抽取式 QA]
-    RE --> PROMPT[Prompt 生成]
-    PROMPT --> LLM[ChatCompletion]
-    LLM --> ANS[带引用回答]
-    ANS --> TRACE[Trace 记录检索/答案]
+    Q["用户问题"] --> R["混合检索（向量 + 关键词）"]
+    R --> S["召回相关 chunks"]
+    S --> T["构建上下文 + Prompt"]
+    T --> U["调用 LLM 生成答案"]
+    U --> V["后处理"]
+    V --> W["返回最终答案"]
+    W --> X["Trace / Log"]
 ```
 
 ### 摘要流程（Summarize）
 
 ```mermaid
 flowchart TD
-    Req[结构化摘要请求] --> RETR[retrieve top_k chunks]
-    RETR --> FILTER[按 doc_name 过滤]
-    FILTER --> PROM[摘要 Prompt]
-    PROM --> LLM[LLM json_mode]
-    LLM --> JSON[JSON Schema 输出]
-    JSON --> TRACE
+    Q["用户问题"] --> R["混合检索（向量 + 关键词）"]
+    R --> S["召回相关 chunks"]
+    S --> T["构建上下文 + Prompt"]
+    T --> U["调用 LLM 生成答案"]
+    U --> V["后处理"]
+    V --> W["返回最终答案"]
+    W --> X["Trace / Log"]
 ```
 
 ---
@@ -283,10 +284,19 @@ python -m app.cli db reset                 # 清空并重建 collection
 
 ## 运行截图示例
 
-> 提交前建议补充实际运行截图，可存放在 `docs/` 或使用外链。
+### Web问答实例
+<img width="1912" height="1018" alt="image" src="https://github.com/user-attachments/assets/999401d4-a74d-4d41-b0bb-99618e5b8e6a" />
+<img width="1916" height="1016" alt="image" src="https://github.com/user-attachments/assets/604b3dcf-c4fc-476c-9b6c-c0d195d336fd" />
+<img width="1914" height="1016" alt="image" src="https://github.com/user-attachments/assets/280d627a-0757-444e-861b-0829110482cb" />
 
-- ![Web 问答示例](docs/web-ask.png)  *(示例占位，交付前请替换)*
-- ![CLI 结构化摘要](docs/cli-summarize.png)
+命令行返回：
+ <img width="1473" height="748" alt="image" src="https://github.com/user-attachments/assets/eb99ab5d-ebb0-489d-b345-a52feef9f6af" />
+
+### CLI 结构化摘要
+命令行执行 python -m app.cli summarize sample_report.txt：
+<img width="1919" height="965" alt="image" src="https://github.com/user-attachments/assets/22263060-8f17-41cc-adbd-5bd5ea3b3e9f" />
+Web端：
+<img width="1143" height="903" alt="image" src="https://github.com/user-attachments/assets/596658fa-1ddc-44d7-9b50-f21184a9c4ef" />
 
 ---
 
