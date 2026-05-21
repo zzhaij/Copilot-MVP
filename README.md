@@ -286,7 +286,8 @@ python -m app.cli db reset                 # 清空并重建 collection
 > 3.	本地 Embedding：改用多语言模型 paraphrase-multilingual-MiniLM-L12-v2，提升中文语义与排序。
 > 4.	动态阈值：保持 SCORE_THRESHOLD，但实体命中可越过，避免返回“(无引用)”的空结果。
 
-> **问题2**：同一文档被重复入库了 3 次（8 chunks 里有 6 个是重复的）。
+> **问题2**：同一文档被重复入库了 3 次（8 chunks 里有 6 个是重复的）。 
+> 
 > **结果**：修复入库去重逻辑——如果同一 doc_id 已存在则先删除旧数据再重新入库。
 
 
