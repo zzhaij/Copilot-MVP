@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enterprise Doc Copilot MVP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .citation { font-size: 0.75rem; color: #64748b; border-left: 2px solid #cbd5e1; padding-left: 0.5rem; margin: 0.25rem 0; }
+    pre { white-space: pre-wrap; word-break: break-word; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <div class="max-w-5xl mx-auto p-6">
+    <header class="mb-6">
+      <h1 class="text-2xl font-bold">企业资料处理 Copilot · MVP</h1>
+      <p class="text-sm text-slate-500">RAG 单链路 · 上传 → 问答带引用 → 结构化摘要 · 全程 trace 落盘</p>
+    </header>
+
+    <section class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-white rounded-lg p-4 shadow-sm md:col-span-1">
+        <h2 class="font-semibold mb-2">1. 上传资料</h2>
+        <input id="file" type="file" class="block w-full text-sm mb-2" accept=".pdf,.docx,.md,.markdown,.txt" />
+        <button id="btn-upload" class="w-full bg-slate-800 text-white text-sm py-2 rounded hover:bg-slate-700">上传并入库</button>
+        <div id="upload-result" class="text-xs text-slate-500 mt-2"></div>
+
+        <h3 class="font-semibold mt-4 mb-1 text-sm">已入库文档</h3>
+        <ul id="doc-list" class="text-xs space-y-1 text-slate-600"></ul>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 shadow-sm md:col-span-2">
+        <h2 class="font-semibold mb-2">2. 问答</h2>
+        <textarea id="q" rows="2" class="w-full border rounded p-2 text-sm" placeholder="例如：这份合同的违约责任是什么？"></textarea>
+        <div class="flex gap-2 mt-2">
+          <button id="btn-ask" class="flex-1 bg-blue-600 text-white text-sm py-2 rounded hover:bg-blue-500">提问</button>
+          <button id="btn-sum" class="flex-1 bg-emerald-600 text-white text-sm py-2 rounded hover:bg-emerald-500">结构化摘要</button>
+        </div>
+        <div id="answer" class="mt-3 text-sm bg-slate-50 rounded p-3 min-h-[80px]"></div>
+        <div id="cites" class="mt-2 space-y-2"></div>
+        <div id="trace-link" class="mt-2 text-xs text-slate-500"></div>
+      </div>
+    </section>
+
+    <footer class="text-xs text-slate-400">
+      Trace 文件位于 <code>traces/</code>，日志位于 <code>logs/run.log</code>。
+    </footer>
+  </div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+async function refreshDocs() {
+  const r = await fetch('/api/documents').then(r => r.json());
+  $('doc-list').innerHTML = (r.documents || []).map(d =>
+    `<li>· ${d.doc_name}</li>`
+  ).join('') || '<li class="text-slate-400">（暂无）</li>';
+}
+
+$('btn-upload').onclick = async () => {
+  const f = $('file').files[0];
+  if (!f) { alert('请选择文件'); return; }
+  $('upload-result').textContent = '上传中...';
+  const fd = new FormData(); fd.append('file', f);
+  const r = await fetch('/api/upload', { method: 'POST', body: fd }).then(r => r.json());
+  $('upload-result').textContent = r.ok
+    ? `✅ ${r.doc_name}: ${r.chunks} chunks (trace ${r.trace_id})`
+    : `❌ ${r.detail || JSON.stringify(r)}`;
+  refreshDocs();
+};
+
+function renderCitations(cites) {
+  if (!cites || !cites.length) { $('cites').innerHTML = ''; return; }
+  $('cites').innerHTML = '<div class="text-xs font-semibold text-slate-500 mb-1">引用片段</div>' +
+    cites.map(c => `
+      <details class="bg-white border rounded text-xs">
+        <summary class="cursor-pointer px-2 py-1">[${c.rank}] ${c.doc_name}${c.page ? ' 第'+c.page+'页' : ''} · score=${c.score}</summary>
+        <pre class="px-2 py-2 text-slate-700">${(c.text || '').replace(/</g,'&lt;')}</pre>
+      </details>`).join('');
+}
+
+$('btn-ask').onclick = async () => {
+  const q = $('q').value.trim();
+  if (!q) return;
+  $('answer').textContent = '思考中...';
+  $('cites').innerHTML = '';
+  const r = await fetch('/api/ask', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ question: q })
+  }).then(r => r.json());
+  if (r.detail) { $('answer').textContent = '❌ ' + r.detail; return; }
+  $('answer').textContent = r.answer || '(空)';
+  renderCitations(r.citations);
+  $('trace-link').innerHTML = r.trace_id ? `trace_id = <a class="underline" href="/api/traces/${r.trace_id}" target="_blank">${r.trace_id}</a>` : '';
+};
+
+$('btn-sum').onclick = async () => {
+  $('answer').textContent = '生成摘要中...';
+  $('cites').innerHTML = '';
+  const r = await fetch('/api/summarize', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ doc_name: null })
+  }).then(r => r.json());
+  if (r.detail) { $('answer').textContent = '❌ ' + r.detail; return; }
+  $('answer').innerHTML = '<pre>' + JSON.stringify(r.summary, null, 2) + '</pre>';
+  renderCitations(r.citations);
+  $('trace-link').innerHTML = r.trace_id ? `trace_id = <a class="underline" href="/api/traces/${r.trace_id}" target="_blank">${r.trace_id}</a>` : '';
+};
+
+refreshDocs();
+</script>
+</body>
+</html>
